@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 17:28:22 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/28 18:25:40 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_bg(t_data *data)
 		while (x < WIN_WIDTH)
 		{
 			if (y < WIN_HEIGHT / 2)
-				mlx_pixel_put_custom(&data->img, x, y, 0x660033);
+				mlx_pixel_put_custom(&data->img, x, y, 0x0F005C);
 			else
 				mlx_pixel_put_custom(&data->img, x, y, 0x666666);
 			x++;

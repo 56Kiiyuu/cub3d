@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 18:07:57 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/28 18:26:47 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	raycasting(t_data *data)
 		int	drawend = lineheight / 2 + WIN_HEIGHT / 2;
 		if (drawend >= WIN_HEIGHT)
 			drawend = WIN_HEIGHT - 1;
-		int	color = 0xFF0000;
+		int	color = 0x2E2E2D;
 		if (side == 1)
 			color = 0xAA0000;
 
