@@ -7,6 +7,10 @@ SRC =	src/main.c \
 		src/errors.c \
 		src/exit.c \
 		src/init/init_mlx.c \
+		src/init/init_player.c \
+		src/render/render.c \
+		src/render/raycasting.c \
+		src/render/move_player.c
 
 OBJS = ${SRC:.c=.o}
 

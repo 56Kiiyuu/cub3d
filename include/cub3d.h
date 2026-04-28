@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 15:02:52 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/28 18:00:24 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,22 @@ typedef struct s_fileinfo
 typedef struct s_img
 {
 	void	*img;
-	int		*addr;
+	char	*addr;
 	int		pixel_bits;
 	int		len_line;
 	int		endian;
 }	t_img;
+
+typedef struct s_player
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+}	t_player;
+
 
 typedef struct s_data
 {
@@ -64,9 +75,19 @@ typedef struct s_data
 	int			win_width;
 	char		**map;
 	t_fileinfo	params;
+	t_player	*player;
+	t_img		img;
 }	t_data;
 
+extern int worldMAP[8][8];
+
 void	init_mlx(t_data *data);
+void	init_player(t_data *data);
+
+int		render(t_data *data);
+void	draw_colon(t_data *data, int x, int start, int end, int color);
+void	raycasting(t_data *data);
+int		handle_keypress(int keycode, t_data *data);
 
 void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
