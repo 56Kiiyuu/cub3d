@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 15:02:52 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/28 17:05:53 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1024
 
-/* MSG ERRORS*/
-
-# define ERR_MLX_START "Not start MLX"
-# define ERR_MLX_WINDOW "Not create window"
+/* ERRORS CODE*/
+# define ERR_NOT_ENOUGHT_ARGS 0
+# define ERR_PARSER_EXTENSION 1
+# define ERR_MLX_START 2
+# define ERR_MLX_WINDOW 3
 
 typedef struct s_fileinfo
 {
@@ -72,5 +73,12 @@ void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
 
 int		error_msg(char *from, char *msg, int code);
+
+// Parsing
+void	ft_parse(const char *filename, t_data *data);
+
+// Error
+int		ft_error(char *from, int code);
+
 #endif
 
