@@ -4,9 +4,10 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDE = -I include
 
 SRC =	src/main.c \
-		src/errors.c \
+		src/error_handling/errors.c \
 		src/exit.c \
 		src/init/init_mlx.c \
+		src/parsing/parse.c \
 
 OBJS = ${SRC:.c=.o}
 
