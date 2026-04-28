@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 17:05:53 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/28 17:11:52 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,21 @@
 # define ERR_MLX_START 2
 # define ERR_MLX_WINDOW 3
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 typedef struct s_fileinfo
 {
 	char	*no_path;
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	int		floor_color;
-	int		ceiling_color;
+	t_rgb	floor_color;
+	t_rgb	ceiling_color;
 }	t_fileinfo;
 
 
