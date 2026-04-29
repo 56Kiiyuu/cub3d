@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   valid_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/28 16:09:22 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 17:44:25 by kevlim           ###   ########.fr       */
+/*   Created: 2026/04/29 16:03:55 by kevlim            #+#    #+#             */
+/*   Updated: 2026/04/29 18:23:39 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_player(t_data *data)
+// Check X
+// Check Y
+// Fonction a modif pour le parsing
+int	validate_move(t_data *data, double newX, double newY)
 {
-	data->player->posX = 4.0;
-	data->player->posY = 4.0;
+	int	moved;
 
-	data->player->dirX = 1.0;
-	data->player->dirY = 0.0;
-
-	data->player->planeX = 0.0;
-	data->player->planeY = 0.0;
+	moved = 0;
+	if (worldMAP[(int)newX][(int)data->player->posY] == 0)
+	{
+		data->player->posX = newX;
+		moved = 1;
+	}
+	if (worldMAP[(int)data->player->posX][(int)newY] == 0)
+	{
+		data->player->posY = newY;
+		moved = 1;
+	}
+	return (moved);
 }

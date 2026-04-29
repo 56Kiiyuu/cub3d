@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 18:57:21 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/29 16:49:51 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	mlx_pixel_put_custom(t_img *img, int x, int y, int color)
 	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
 		return ;
 	dest = img->addr + (y * img->len_line + x * (img->pixel_bits / 8));
-	*(unsigned int*)dest = color;
+	*(unsigned int *)dest = color;
 }
 
 void	render_bg(t_data *data)
@@ -55,6 +55,7 @@ void	draw_colon(t_data *data, int x, int start, int end, int color)
 
 int	render(t_data *data)
 {
+	move_player(data);
 	render_bg(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

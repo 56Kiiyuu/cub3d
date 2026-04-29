@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 13:59:21 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/29 18:36:52 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,14 +160,14 @@ void	process_dda(t_ray *ray)
 			ray->side = 1;
 		}
 		if (ray->mapX < 0 || ray->mapX >= 8 || ray->mapY < 0 || ray->mapY >= 8)
-			break;
+			break ;
 		if (worldMAP[ray->mapX][ray->mapY] > 0)
 			hit = 1;
 	}
 }
 
 /*Calculate HEIGHT*/
-void	calculate_line(t_ray *ray, t_player *player)
+void	calculate_line_h(t_ray *ray, t_player *player)
 {
 	if (ray->side == 0)
 		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
@@ -191,8 +191,8 @@ void	calculate_line(t_ray *ray, t_player *player)
 void	raycasting(t_data *data)
 {
 	t_ray	ray;
-	int	x;
-	int	color;
+	int		x;
+	int		color;
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -200,13 +200,11 @@ void	raycasting(t_data *data)
 		init_ray_data(x, &ray, data->player);
 		setup_dda(&ray, data->player);
 		process_dda(&ray);
-		calculate_line(&ray, data->player);
-
+		calculate_line_h(&ray, data->player);
 		color = 0x2E2E2D;
 		if (ray.side == 1)
 			color = 0xAA0000;
 		draw_colon(data, x, ray.drawStart, ray.drawEnd, color);
 		x++;
 	}
-
 }

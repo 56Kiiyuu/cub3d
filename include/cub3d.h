@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 12:26:42 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/29 17:36:02 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 /* MACROS */
 # define FALSE 0
 # define TRUE 1
+# define ROT_SPEED 0.02
+# define MOVE_SPEED 0.03
 
 /* FENETRE */
 # define WIN_WIDTH 1280
@@ -64,6 +66,10 @@ typedef struct s_player
 	double	dirY;
 	double	planeX;
 	double	planeY;
+	int		moveX;
+	int		moveY;
+	int		rotate;
+	char	direction;
 }	t_player;
 
 
@@ -104,12 +110,18 @@ typedef struct s_ray
 extern int worldMAP[8][8];
 
 void	init_mlx(t_data *data);
-void	init_player(t_data *data);
 
 int		render(t_data *data);
 void	draw_colon(t_data *data, int x, int start, int end, int color);
 void	raycasting(t_data *data);
+
+/*MOVEMENT*/
+void	init_player_direction(t_data *data);
+int		move_player(t_data *data);
+int		rotate_player(t_data *data, double rot_dir);
+int		validate_move(t_data *data, double newX, double newY);
 int		handle_keypress(int keycode, t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
 
 void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
