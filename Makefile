@@ -1,6 +1,6 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDE = -I include
 
 SRC =	src/main.c \
@@ -8,6 +8,7 @@ SRC =	src/main.c \
 		src/exit.c \
 		src/init/init_mlx.c \
 		src/parsing/parse.c \
+		src/parsing/player_directions.c \
 
 OBJS = ${SRC:.c=.o}
 

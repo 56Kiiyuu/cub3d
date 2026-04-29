@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/29 14:35:16 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/29 16:55:34 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_parse(const char *filename, t_data *data)
 	char	*line;
 	int		i;
 
-	(void)data;
+	ft_init_param(&data->params);
 	size_filename = ft_strlen(filename);
 	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
 		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
@@ -48,14 +48,14 @@ void	ft_parse(const char *filename, t_data *data)
 		i = 0;
 		while (line[i] != '\0' && ft_isspace(line[i]))
 			i++;
-		if (!ft_strncmp(&line[i], "NO", 3))
-			ft_fill_no();
-		else if (!ft_strncmp(&line[i], "SO", 3))
+		if (!ft_strncmp(&line[i], "NO", 2))
+			ft_fill_no(&data->params, &line[i + 2]);
+		/*else if (!ft_strncmp(&line[i], "SO", 3))
 			ft_fill_so();
 		else if (!ft_strncmp(&line[i], "WE", 3))
 			ft_fill_we();
 		else if (!ft_strncmp(&line[i], "EA", 3))
-			ft_fill_ea();
+			ft_fill_ea();*/
 		line = get_next_line(fd);
 	}
 
