@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 17:05:18 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/29 17:20:26 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 int	ft_error(char *from, int code)
 {
-	char *err[4] =
+	char *err[9] =
 	{
 		"Pas assez d'argument: ./cub3d <filename.cub>",
 		"L'extension du fichier n'est pas .cub",
 		"Not start MLX",
-		"Not create window"
+		"Not create window",
+		"Path doit commencer par ./ ou /",
+		"Texture direction incorrect Ex: NO <PATH>.xmp",
+		"Doublons de texture",
+		"Aucune PATH preciser pour la texture",
+		"Les space sont interdites dans le PATH"
 	};
 
 	return (error_msg(from, err[code], code));

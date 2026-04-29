@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 14:28:11 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/29 17:20:37 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@
 # define ERR_PARSER_EXTENSION 1
 # define ERR_MLX_START 2
 # define ERR_MLX_WINDOW 3
+# define ERR_PARSER_NOT_GOOD_PATH 4
+# define ERR_PARSER_TEXTURE_DIRECTION 5
+# define ERR_PARSER_MULTIPLE_TEXTURE 6
+# define ERR_PARSER_EMPTY_PATH 7
+# define ERR_PARSER_SPACE_PATH 8
 
 typedef struct s_rgb
 {
@@ -83,10 +88,10 @@ int		error_msg(char *from, char *msg, int code);
 
 // Parsing
 void	ft_parse(const char *filename, t_data *data);
-int		ft_isspace(char *line, int i);
+int		ft_isspace(char c);
+void	ft_fill_no(t_fileinfo *fi, char *line);
 
 // Error
 int		ft_error(char *from, int code);
 
 #endif
-
