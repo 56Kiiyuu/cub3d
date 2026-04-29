@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/28 17:26:50 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/29 14:27:47 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	ft_init_param(t_fileinfo *fi)
 	fi->we_path = NULL;
 }
 
-int	ft_skip_space(char *line, int i)
+int	ft_isspace(char *line, int i)
 {
-	while ((line[i] != '\0') && line[i] == ' ')
+	while ((line[i] != '\0') && (line[i] == ' ' || line[i] == '\f'
+			|| line[i] == '\n' || line[i] == '\r'
+			|| line[i] == '\t' || line[i] == '\v'))
 		i++;
 	return (i);
 }
@@ -45,7 +47,7 @@ void	ft_parse(const char *filename, t_data *data)
 	while (line != NULL)
 	{
 		i = 0;
-		i = ft_skip_space(line, i);
+		i = ft_isspace(line, i);
 		if (!ft_strncmp(&line[i], "NO", 3))
 			ft_fill_no();
 		else if (!ft_strncmp(&line[i], "SO", 3))
