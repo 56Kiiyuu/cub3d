@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/28 18:00:24 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/29 12:26:42 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,28 @@ typedef struct s_data
 	t_player	*player;
 	t_img		img;
 }	t_data;
+
+typedef struct s_ray
+{
+	double	cameraX;		//coord X (-1 to 1) where ray for pov
+	double	rayDirX;		//direction X for ray
+	double	rayDirY;		//direction Y for ray
+	int		mapX;			//Pos X of ray in MAP
+	int		mapY;			//Pos Y of ray in MAP
+	double	sideDistX;		//distance X ray start to next case
+	double	sideDistY;		//distance Y ray start to next case
+	double	deltaDistX;		//distance X ray to cross next line vertical
+	double	deltaDistY;		//distance Y ray to cross next line horizontal
+	double	perpWallDist;	//used for fish-eye
+	int		stepX;			//direction X we step on the grid
+	int		stepY;			//direction Y we step on the grid
+	int		side;			//boolean (0 if hit vertical, 1 if hit horizontal)
+	int		lineHeight;		//height (pixels) of colon
+	int		drawStart;		//pixel colon(upper)
+	int		drawEnd;		//pixel colon(lower)
+	double	wallX;
+}	t_ray;
+
 
 extern int worldMAP[8][8];
 
