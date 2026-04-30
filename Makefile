@@ -8,7 +8,8 @@ SRC =	src/main.c \
 		src/exit.c \
 		src/init/init_mlx.c \
 		src/parsing/parse.c \
-		src/parsing/player_directions.c \
+		src/parsing/texture_directions.c \
+		src/parsing/parse_map.c \
 
 OBJS = ${SRC:.c=.o}
 
