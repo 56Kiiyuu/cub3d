@@ -10,6 +10,13 @@ SRC =	src/main.c \
 		src/parsing/parse.c \
 		src/parsing/texture_directions.c \
 		src/parsing/parse_map.c \
+		src/render/render.c \
+		src/render/raycasting.c \
+		src/movement/handler_input.c \
+		src/movement/player_direction.c \
+		src/movement/player_move.c \
+		src/movement/player_rotation.c \
+		src/movement/valid_move.c \
 
 OBJS = ${SRC:.c=.o}
 

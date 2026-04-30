@@ -26,6 +26,8 @@
 /* MACROS */
 # define FALSE 0
 # define TRUE 1
+# define ROT_SPEED 0.02
+# define MOVE_SPEED 0.03
 
 /* FENETRE */
 # define WIN_WIDTH 1280
@@ -63,11 +65,26 @@ typedef struct s_fileinfo
 typedef struct s_img
 {
 	void	*img;
-	int		*addr;
+	char	*addr;
 	int		pixel_bits;
 	int		len_line;
 	int		endian;
 }	t_img;
+
+typedef struct s_player
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	int		moveX;
+	int		moveY;
+	int		rotate;
+	char	direction;
+}	t_player;
+
 
 typedef struct s_data
 {
@@ -77,9 +94,47 @@ typedef struct s_data
 	int			win_width;
 	char		**map;
 	t_fileinfo	params;
+	t_player	*player;
+	t_img		img;
 }	t_data;
 
+typedef struct s_ray
+{
+	double	cameraX;		//coord X (-1 to 1) where ray for pov
+	double	rayDirX;		//direction X for ray
+	double	rayDirY;		//direction Y for ray
+	int		mapX;			//Pos X of ray in MAP
+	int		mapY;			//Pos Y of ray in MAP
+	double	sideDistX;		//distance X ray start to next case
+	double	sideDistY;		//distance Y ray start to next case
+	double	deltaDistX;		//distance X ray to cross next line vertical
+	double	deltaDistY;		//distance Y ray to cross next line horizontal
+	double	perpWallDist;	//used for fish-eye
+	int		stepX;			//direction X we step on the grid
+	int		stepY;			//direction Y we step on the grid
+	int		side;			//boolean (0 if hit vertical, 1 if hit horizontal)
+	int		lineHeight;		//height (pixels) of colon
+	int		drawStart;		//pixel colon(upper)
+	int		drawEnd;		//pixel colon(lower)
+	double	wallX;
+}	t_ray;
+
+
+extern int worldMAP[8][8];
+
 void	init_mlx(t_data *data);
+
+int		render(t_data *data);
+void	draw_colon(t_data *data, int x, int start, int end, int color);
+void	raycasting(t_data *data);
+
+/*MOVEMENT*/
+void	init_player_direction(t_data *data);
+int		move_player(t_data *data);
+int		rotate_player(t_data *data, double rot_dir);
+int		validate_move(t_data *data, double newX, double newY);
+int		handle_keypress(int keycode, t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
 
 void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
