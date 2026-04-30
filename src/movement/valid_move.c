@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   valid_move.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:36:47 by kevlim           ###   ########.fr       */
+/*   Created: 2026/04/29 16:03:55 by kevlim            #+#    #+#             */
+/*   Updated: 2026/04/29 18:23:39 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	clean_exit(t_data *data, int code)
+// Check X
+// Check Y
+// Fonction a modif pour le parsing
+int	validate_move(t_data *data, double newX, double newY)
 {
-	if (!data)
-		exit(code);
-	if (data->win && data->mlx)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
+	int	moved;
+
+	moved = 0;
+	if (worldMAP[(int)newX][(int)data->player->posY] == 0)
 	{
-		mlx_destroy_display(data->mlx);
-		mlx_loop_end(data->mlx);
-		free(data->mlx);
+		data->player->posX = newX;
+		moved = 1;
 	}
-	free(data->player);
-	exit(code);
-}
-
-int	quit_cub3d(t_data *data)
-{
-	clean_exit(data, 0);
-	return (0);
+	if (worldMAP[(int)data->player->posX][(int)newY] == 0)
+	{
+		data->player->posY = newY;
+		moved = 1;
+	}
+	return (moved);
 }
