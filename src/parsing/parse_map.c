@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
+/*   Updated: 2026/04/30 15:50:13 by gabch            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/cub3d.h"
+#include "../../libft/libft.h"
+#include <stdio.h>
+
+void	parse_map(t_data *data, int size_map, const char *filename)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = 0;
+	printf("size map: %d\n", size_map);
+	fd = open(filename, O_RDONLY);
+	data->map = malloc(sizeof(char *) * size_map);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		if (!ft_strncmp(line, "1", 1) || !ft_strncmp(line, " ", 1))
+		{
+			data->map[i] = line;
+			if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
+				data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
+			printf("%s\n", data->map[i]);
+			i++;
+		}
+		line = get_next_line(fd);
+	}
+}

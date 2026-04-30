@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/30 15:08:08 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 15:40:11 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_parse(const char *filename, t_data *data)
 	int		fd;
 	char	*line;
 	int		i;
+	int		size_map;
 
 	ft_init_param(&data->params);
 	size_filename = ft_strlen(filename);
@@ -43,6 +44,7 @@ void	ft_parse(const char *filename, t_data *data)
 		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
 	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
+	size_map = 0;
 	while (line != NULL)
 	{
 		i = 0;
@@ -56,7 +58,9 @@ void	ft_parse(const char *filename, t_data *data)
 			ft_fill_data_info(data->params.we_path, &line[i + 2]);
 		else if (!ft_strncmp(&line[i], "EA", 2))
 			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
+		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
+			size_map++;
 		line = get_next_line(fd);
 	}
-
+	parse_map(data, size_map, filename);
 }

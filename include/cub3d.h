@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/30 14:57:16 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 15:41:37 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		error_msg(char *from, char *msg, int code);
 void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
 void	ft_fill_data_info(char *str, char *line);
+void	parse_map(t_data *data, int size_map, const char *filename);
 
 // Error
 int		ft_error(char *from, int code);
