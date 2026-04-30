@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/30 15:40:11 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 16:01:40 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,15 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-void	ft_parse(const char *filename, t_data *data)
+/*
+	return size of map
+*/
+int	ft_loop_parse(const char *filename, char *line, t_data *data)
 {
-	int		size_filename;
-	int		fd;
-	char	*line;
-	int		i;
-	int		size_map;
-
-	ft_init_param(&data->params);
-	size_filename = ft_strlen(filename);
-	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
-		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
-	fd = open(filename, O_RDONLY);
+	int (fd) = open(filename, O_RDONLY);
+	int (size_map) = 0;
+	int (i) = 0;
 	line = get_next_line(fd);
-	size_map = 0;
 	while (line != NULL)
 	{
 		i = 0;
@@ -62,5 +56,19 @@ void	ft_parse(const char *filename, t_data *data)
 			size_map++;
 		line = get_next_line(fd);
 	}
+	return (size_map);
+}
+
+void	ft_parse(const char *filename, t_data *data)
+{
+	char	*line;
+	int		size_filename;
+	int		size_map;
+
+	ft_init_param(&data->params);
+	size_filename = ft_strlen(filename);
+	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
+		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
+	size_map = ft_loop_parse(filename, line, data);
 	parse_map(data, size_map, filename);
 }
