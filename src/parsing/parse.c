@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/29 16:55:34 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/04/30 15:08:08 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	ft_parse(const char *filename, t_data *data)
 		while (line[i] != '\0' && ft_isspace(line[i]))
 			i++;
 		if (!ft_strncmp(&line[i], "NO", 2))
-			ft_fill_no(&data->params, &line[i + 2]);
-		/*else if (!ft_strncmp(&line[i], "SO", 3))
-			ft_fill_so();
-		else if (!ft_strncmp(&line[i], "WE", 3))
-			ft_fill_we();
-		else if (!ft_strncmp(&line[i], "EA", 3))
-			ft_fill_ea();*/
+			ft_fill_data_info(data->params.no_path, &line[i + 2]);
+		else if (!ft_strncmp(&line[i], "SO", 2))
+			ft_fill_data_info(data->params.so_path, &line[i + 2]);
+		else if (!ft_strncmp(&line[i], "WE", 2))
+			ft_fill_data_info(data->params.we_path, &line[i + 2]);
+		else if (!ft_strncmp(&line[i], "EA", 2))
+			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
 		line = get_next_line(fd);
 	}
 
