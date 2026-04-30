@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/30 16:01:40 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 16:08:37 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
 		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
 			size_map++;
+		free(line);
 		line = get_next_line(fd);
 	}
 	return (size_map);
@@ -65,6 +66,7 @@ void	ft_parse(const char *filename, t_data *data)
 	int		size_filename;
 	int		size_map;
 
+	line = NULL;
 	ft_init_param(&data->params);
 	size_filename = ft_strlen(filename);
 	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
