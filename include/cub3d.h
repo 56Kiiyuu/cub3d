@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 17:36:02 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/30 15:41:37 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,23 @@
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1024
 
-/* MSG ERRORS*/
+/* ERRORS CODE*/
+# define ERR_NOT_ENOUGHT_ARGS 0
+# define ERR_PARSER_EXTENSION 1
+# define ERR_MLX_START 2
+# define ERR_MLX_WINDOW 3
+# define ERR_PARSER_NOT_GOOD_PATH 4
+# define ERR_PARSER_TEXTURE_DIRECTION 5
+# define ERR_PARSER_MULTIPLE_TEXTURE 6
+# define ERR_PARSER_EMPTY_PATH 7
+# define ERR_PARSER_SPACE_PATH 8
 
-# define ERR_MLX_START "Not start MLX"
-# define ERR_MLX_WINDOW "Not create window"
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
 
 typedef struct s_fileinfo
 {
@@ -44,8 +57,8 @@ typedef struct s_fileinfo
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	int		floor_color;
-	int		ceiling_color;
+	t_rgb	floor_color;
+	t_rgb	ceiling_color;
 }	t_fileinfo;
 
 
@@ -127,5 +140,14 @@ void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
 
 int		error_msg(char *from, char *msg, int code);
-#endif
 
+// Parsing
+void	ft_parse(const char *filename, t_data *data);
+int		ft_isspace(char c);
+void	ft_fill_data_info(char *str, char *line);
+void	parse_map(t_data *data, int size_map, const char *filename);
+
+// Error
+int		ft_error(char *from, int code);
+
+#endif

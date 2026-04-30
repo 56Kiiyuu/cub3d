@@ -1,12 +1,15 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDE = -I include
 
 SRC =	src/main.c \
-		src/errors.c \
+		src/error_handling/errors.c \
 		src/exit.c \
 		src/init/init_mlx.c \
+		src/parsing/parse.c \
+		src/parsing/texture_directions.c \
+		src/parsing/parse_map.c \
 		src/render/render.c \
 		src/render/raycasting.c \
 		src/movement/handler_input.c \
