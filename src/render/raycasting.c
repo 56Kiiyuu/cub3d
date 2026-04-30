@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:36:52 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/04/30 17:17:59 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	setup_dda(t_ray *ray, t_player *player)
 }
 
 /*DDA algorithm*/
-void	process_dda(t_ray *ray)
+void	process_dda(t_ray *ray, t_data *data)
 {
 	int	hit;
 
@@ -159,9 +159,9 @@ void	process_dda(t_ray *ray)
 			ray->mapY += ray->stepY;
 			ray->side = 1;
 		}
-		if (ray->mapX < 0 || ray->mapX >= 8 || ray->mapY < 0 || ray->mapY >= 8)
+		if (ray->mapX < 0 || ray->mapX >= data->map_size_y || ray->mapY < 0 || ray->mapY >= (int)ft_strlen(data->map[ray->mapX]))
 			break ;
-		if (worldMAP[ray->mapX][ray->mapY] > 0)
+		if (data->map[ray->mapX][ray->mapY] > '0')
 			hit = 1;
 	}
 }
@@ -199,7 +199,7 @@ void	raycasting(t_data *data)
 	{
 		init_ray_data(x, &ray, data->player);
 		setup_dda(&ray, data->player);
-		process_dda(&ray);
+		process_dda(&ray, data);
 		calculate_line_h(&ray, data->player);
 		color = 0x2E2E2D;
 		if (ray.side == 1)

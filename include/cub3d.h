@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/30 15:41:37 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 16:44:26 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_data
 	int			win_height;
 	int			win_width;
 	char		**map;
+	int			map_size_y;
 	t_fileinfo	params;
 	t_player	*player;
 	t_img		img;

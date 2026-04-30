@@ -6,7 +6,7 @@
 /*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/30 16:28:11 by gabch            ###   ########.fr       */
+/*   Updated: 2026/04/30 16:54:57 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (ft_error("main.c", ERR_NOT_ENOUGHT_ARGS));
-	ft_parse(av[1], &data);
 	ft_memset(&data, 0, sizeof(t_data));
+	ft_parse(av[1], &data);
 	init_mlx(&data);
 	data.player = malloc(sizeof(t_player));
 	if (!data.player)
