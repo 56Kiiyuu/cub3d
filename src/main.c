@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:36:43 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/01 16:46:06 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int worldMAP[8][8] = {
 	{1, 1, 1, 1, 1, 1, 1, 1}
 };
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
