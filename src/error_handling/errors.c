@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/01 15:36:07 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/01 15:51:47 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(char *from, int code)
 {
-	char *err[10] =
+	char *err[11] =
 	{
 		"Pas assez d'argument: ./cub3d <filename.cub>",
 		"L'extension du fichier n'est pas .cub",
@@ -25,7 +25,8 @@ int	ft_error(char *from, int code)
 		"Doublons de texture",
 		"Aucune PATH preciser pour la texture",
 		"Les space sont interdites dans le PATH",
-		"KeyWord inconnu ou mal placer"
+		"KeyWord inconnu ou mal placer",
+		"Format de nombre rgb incorrect",
 
 	};
 

@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/01 15:35:51 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/01 15:51:00 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERR_PARSER_EMPTY_PATH 7
 # define ERR_PARSER_SPACE_PATH 8
 # define ERR_PARSER_BAD_KEYWORD 9
+# define ERR_PARSER_BAD_NUMBER_RGB 10
 
 typedef struct s_rgb
 {
