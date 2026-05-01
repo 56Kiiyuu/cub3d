@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_directions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:20:24 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/30 16:12:08 by gabch            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:28:17 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	ft_fill_data_info(char *str, char *line)
 		exit(ft_error("player_directions.c", ERR_PARSER_TEXTURE_DIRECTION));
 	str[i] = '\0';
 	if (ft_strncmp(&str[ft_strlen(str) - 4], ".xpm", 5))
-		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
+		exit(ft_error("parse.c", ERR_PARSER_TEXTURE_DIRECTION));
 	printf("%s\n", str);
 }

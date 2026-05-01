@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/04/30 16:08:37 by gabch            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:36:19 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,28 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 	int (fd) = open(filename, O_RDONLY);
 	int (size_map) = 0;
 	int (i) = 0;
+	int (is_map) = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		i = 0;
 		while (line[i] != '\0' && ft_isspace(line[i]))
 			i++;
-		if (!ft_strncmp(&line[i], "NO", 2))
+		if (!ft_strncmp(&line[i], "NO", 2) && !is_map)
 			ft_fill_data_info(data->params.no_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "SO", 2))
+		else if (!ft_strncmp(&line[i], "SO", 2) && !is_map)
 			ft_fill_data_info(data->params.so_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "WE", 2))
+		else if (!ft_strncmp(&line[i], "WE", 2) && !is_map)
 			ft_fill_data_info(data->params.we_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "EA", 2))
+		else if (!ft_strncmp(&line[i], "EA", 2) && !is_map)
 			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
 		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
+		{
+			is_map = 1;
 			size_map++;
+		}
+		else
+			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		free(line);
 		line = get_next_line(fd);
 	}

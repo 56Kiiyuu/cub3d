@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/30 15:41:37 by gabch            ###   ########.fr       */
+/*   Updated: 2026/05/01 15:35:51 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define ERR_PARSER_MULTIPLE_TEXTURE 6
 # define ERR_PARSER_EMPTY_PATH 7
 # define ERR_PARSER_SPACE_PATH 8
+# define ERR_PARSER_BAD_KEYWORD 9
 
 typedef struct s_rgb
 {
