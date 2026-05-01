@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/01 15:51:00 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/01 16:43:04 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct s_fileinfo
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	t_rgb	floor_color;
-	t_rgb	ceiling_color;
+	int		floor_color;
+	int		ceiling_color;
 }	t_fileinfo;
 
 
@@ -148,6 +148,7 @@ void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
 void	ft_fill_data_info(char *str, char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
+void	parse_rgb(int *rgb, char *line);
 
 // Error
 int		ft_error(char *from, int code);

@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/01 15:36:19 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/01 16:59:06 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,21 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 			ft_fill_data_info(data->params.we_path, &line[i + 2]);
 		else if (!ft_strncmp(&line[i], "EA", 2) && !is_map)
 			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
+		else if (!ft_strncmp(&line[i], "F", 1) && !is_map)
+			parse_rgb(&data->params.floor_color, &line[i + 1]);
+		else if (!ft_strncmp(&line[i], "C", 1) && !is_map)
+			parse_rgb(&data->params.ceiling_color, &line[i + 1]);
 		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
 		{
 			is_map = 1;
 			size_map++;
 		}
-		else
+		else if (!(line[i] == '\n') && !(line[i] == '\0'))
 			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		free(line);
 		line = get_next_line(fd);
 	}
+	printf("Floor color %X\nCeiling color %X\n", data->params.floor_color, data->params.ceiling_color);
 	return (size_map);
 }
 
