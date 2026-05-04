@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 15:35:12 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/04 16:57:19 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (ft_error("main.c", ERR_NOT_ENOUGHT_ARGS));
 	ft_memset(&data, 0, sizeof(t_data));
-	ft_parse(av[1], &data);
-	init_mlx(&data);
-	data.player = malloc(sizeof(t_player));
+	data.player = ft_calloc(1, sizeof(t_player));
 	if (!data.player)
 		clean_exit(&data, error_msg("malloc", "Failed to allocate player", 1));
+	ft_parse(av[1], &data);
+	init_mlx(&data);
+	init_textures(&data);
 /*DEBUG START (need to erase)*/
 	data.player->posX = 4.0;
 	data.player->posY = 4.0;
