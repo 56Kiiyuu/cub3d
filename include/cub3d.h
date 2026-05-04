@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/30 16:44:26 by gabch            ###   ########.fr       */
+/*   Updated: 2026/05/01 16:43:04 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define ERR_PARSER_MULTIPLE_TEXTURE 6
 # define ERR_PARSER_EMPTY_PATH 7
 # define ERR_PARSER_SPACE_PATH 8
+# define ERR_PARSER_BAD_KEYWORD 9
+# define ERR_PARSER_BAD_NUMBER_RGB 10
 
 typedef struct s_rgb
 {
@@ -57,8 +59,8 @@ typedef struct s_fileinfo
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
-	t_rgb	floor_color;
-	t_rgb	ceiling_color;
+	int		floor_color;
+	int		ceiling_color;
 }	t_fileinfo;
 
 
@@ -120,9 +122,6 @@ typedef struct s_ray
 	double	wallX;
 }	t_ray;
 
-
-extern int worldMAP[8][8];
-
 void	init_mlx(t_data *data);
 
 int		render(t_data *data);
@@ -147,6 +146,7 @@ void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
 void	ft_fill_data_info(char *str, char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
+void	parse_rgb(int *rgb, char *line);
 
 // Error
 int		ft_error(char *from, int code);
