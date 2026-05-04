@@ -20,6 +20,7 @@ SRC =	src/main.c \
 		src/movement/player_rotation.c \
 		src/movement/valid_move.c \
 		src/parsing/parse_rgb.c \
+		src/parsing/parse_spawn.c \
 
 OBJS = ${SRC:.c=.o}
 

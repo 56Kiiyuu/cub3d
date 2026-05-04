@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 16:57:19 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/04 17:21:42 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	main(int ac, char **av)
 	init_mlx(&data);
 	init_textures(&data);
 /*DEBUG START (need to erase)*/
-	data.player->posX = 4.0;
-	data.player->posY = 4.0;
 	data.player->rotate = 0;
-	data.player->direction = 'W';
 	init_player_direction(&data);
 	data.img.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.pixel_bits, &data.img.len_line, &data.img.endian);
