@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/01 16:46:06 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 15:35:12 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	main(int ac, char **av)
 /*DEBUG START (need to erase)*/
 	data.player->posX = 4.0;
 	data.player->posY = 4.0;
-	data.player->moveX = 0;
-	data.player->moveY = 0;
 	data.player->rotate = 0;
 	data.player->direction = 'W';
 	init_player_direction(&data);
