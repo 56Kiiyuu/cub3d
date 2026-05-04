@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 17:11:23 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 18:01:04 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ char	*ft_fill_data_info(char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
 void	parse_rgb(int *rgb, char *line);
 void	parse_spawn(t_data *data);
+void	check_map(t_data *data);
 
 // Error
 int		ft_error(char *from, int code);

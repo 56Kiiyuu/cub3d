@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/04 17:11:06 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 18:01:16 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ void	ft_parse(const char *filename, t_data *data)
 	data->map_size_y = ft_loop_parse(filename, line, data);
 	parse_map(data, data->map_size_y, filename);
 	parse_spawn(data);
+	check_map(data);
 }
