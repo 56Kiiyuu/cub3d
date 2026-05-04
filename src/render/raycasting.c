@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 14:30:22 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/04 15:54:00 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	raycasting(t_data *data)
 		color = 0x2E2E2D;
 		if (ray.side == 1)
 			color = 0xAA0000;
-		draw_colon(data, x, ray.drawStart, ray.drawEnd, color);
+		draw_textured_line(data, &ray, x);
 		x++;
 	}
 }

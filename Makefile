@@ -7,11 +7,13 @@ SRC =	src/main.c \
 		src/error_handling/errors.c \
 		src/exit.c \
 		src/init/init_mlx.c \
+		src/init/init_textures.c \
 		src/parsing/parse.c \
 		src/parsing/texture_directions.c \
 		src/parsing/parse_map.c \
 		src/render/render.c \
 		src/render/raycasting.c \
+		src/render/textures.c \
 		src/movement/handler_input.c \
 		src/movement/player_direction.c \
 		src/movement/player_move.c \
