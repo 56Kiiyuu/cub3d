@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/04 17:04:03 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:11:06 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 		i = 0;
 		while (line[i] != '\0' && ft_isspace(line[i]))
 			i++;
-		if (!ft_strncmp(&line[i], "NO", 2) && !is_map)
-			ft_fill_data_info(data->params.no_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "SO", 2) && !is_map)
-			ft_fill_data_info(data->params.so_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "WE", 2) && !is_map)
-			ft_fill_data_info(data->params.we_path, &line[i + 2]);
-		else if (!ft_strncmp(&line[i], "EA", 2) && !is_map)
-			ft_fill_data_info(data->params.ea_path, &line[i + 2]);
+		if (!ft_strncmp(&line[i], "NO", 2))
+			data->params.no_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "SO", 2))
+			data->params.so_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "WE", 2))
+			data->params.we_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "EA", 2))
+			data->params.ea_path = ft_fill_data_info(&line[i + 2]);
 		else if (!ft_strncmp(&line[i], "F", 1) && !is_map)
 			parse_rgb(&data->params.floor_color, &line[i + 1]);
 		else if (!ft_strncmp(&line[i], "C", 1) && !is_map)

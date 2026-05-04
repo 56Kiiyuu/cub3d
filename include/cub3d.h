@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 17:03:37 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:11:23 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_img
 	int		pixel_bits;
 	int		len_line;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_player
@@ -101,34 +103,40 @@ typedef struct s_data
 	t_fileinfo	params;
 	t_player	*player;
 	t_img		img;
+	t_img		texture[4];
 }	t_data;
 
 typedef struct s_ray
 {
-	double	cameraX;		//coord X (-1 to 1) where ray for pov
-	double	rayDirX;		//direction X for ray
-	double	rayDirY;		//direction Y for ray
-	int		mapX;			//Pos X of ray in MAP
-	int		mapY;			//Pos Y of ray in MAP
-	double	sideDistX;		//distance X ray start to next case
-	double	sideDistY;		//distance Y ray start to next case
-	double	deltaDistX;		//distance X ray to cross next line vertical
-	double	deltaDistY;		//distance Y ray to cross next line horizontal
-	double	perpWallDist;	//used for fish-eye
-	int		stepX;			//direction X we step on the grid
-	int		stepY;			//direction Y we step on the grid
-	int		side;			//boolean (0 if hit vertical, 1 if hit horizontal)
-	int		lineHeight;		//height (pixels) of colon
-	int		drawStart;		//pixel colon(upper)
-	int		drawEnd;		//pixel colon(lower)
-	double	wallX;
+	double			cameraX;		//coord X (-1 to 1) where ray for pov
+	double			rayDirX;		//direction X for ray
+	double			rayDirY;		//direction Y for ray
+	int				mapX;			//Pos X of ray in MAP
+	int				mapY;			//Pos Y of ray in MAP
+	double			sideDistX;		//distance X ray start to next case
+	double			sideDistY;		//distance Y ray start to next case
+	double			deltaDistX;		//distance X ray to cross next line vertical
+	double			deltaDistY;		//distance Y ray to cross next line horizontal
+	double			perpWallDist;	//used for fish-eye
+	int				stepX;			//direction X we step on the grid
+	int				stepY;			//direction Y we step on the grid
+	int				side;			//boolean (0 if hit vertical, 1 if hit horizontal)
+	int				lineHeight;		//height (pixels) of colon
+	int				drawStart;		//pixel colon(upper)
+	int				drawEnd;		//pixel colon(lower)
+	double			wallX;
+	double			tex_pos;
+	unsigned int	color;
 }	t_ray;
 
 void	init_mlx(t_data *data);
+void	init_textures(t_data *data);
 
 int		render(t_data *data);
+void	mlx_pixel_put_custom(t_img *img, int x, int y, int color);
 void	draw_colon(t_data *data, int x, int start, int end, int color);
 void	raycasting(t_data *data);
+void	draw_textured_line(t_data *data, t_ray *ray, int x);
 
 /*MOVEMENT*/
 void	init_player_direction(t_data *data);
@@ -146,7 +154,7 @@ int		error_msg(char *from, char *msg, int code);
 // Parsing
 void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
-void	ft_fill_data_info(char *str, char *line);
+char	*ft_fill_data_info(char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
 void	parse_rgb(int *rgb, char *line);
 void	parse_spawn(t_data *data);
