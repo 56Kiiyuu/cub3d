@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/01 16:59:06 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 15:25:14 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_init_param(t_fileinfo *fi)
 	fi->no_path = NULL;
 	fi->so_path = NULL;
 	fi->we_path = NULL;
+	fi->ceiling_color = -1;
+	fi->floor_color = -1;
 }
 
 int	ft_isspace(char c)
