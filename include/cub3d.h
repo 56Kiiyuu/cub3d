@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 17:11:23 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:49:44 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ void	mlx_pixel_put_custom(t_img *img, int x, int y, int color);
 void	draw_colon(t_data *data, int x, int start, int end, int color);
 void	raycasting(t_data *data);
 void	draw_textured_line(t_data *data, t_ray *ray, int x);
+void	free_textures(t_data *data);
 
 /*MOVEMENT*/
 void	init_player_direction(t_data *data);
