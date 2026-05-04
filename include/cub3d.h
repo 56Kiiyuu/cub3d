@@ -95,6 +95,7 @@ typedef struct s_data
 	int			win_height;
 	int			win_width;
 	char		**map;
+	int			map_size_y;
 	t_fileinfo	params;
 	t_player	*player;
 	t_img		img;
@@ -120,9 +121,6 @@ typedef struct s_ray
 	int		drawEnd;		//pixel colon(lower)
 	double	wallX;
 }	t_ray;
-
-
-extern int worldMAP[8][8];
 
 void	init_mlx(t_data *data);
 

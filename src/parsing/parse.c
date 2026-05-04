@@ -77,13 +77,12 @@ void	ft_parse(const char *filename, t_data *data)
 {
 	char	*line;
 	int		size_filename;
-	int		size_map;
 
 	line = NULL;
 	ft_init_param(&data->params);
 	size_filename = ft_strlen(filename);
 	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
 		exit(ft_error("parse.c", ERR_PARSER_EXTENSION));
-	size_map = ft_loop_parse(filename, line, data);
-	parse_map(data, size_map, filename);
+	data->map_size_y = ft_loop_parse(filename, line, data);
+	parse_map(data, data->map_size_y, filename);
 }

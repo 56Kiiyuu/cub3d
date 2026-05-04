@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
 /*   Updated: 2026/05/01 16:46:06 by gchalmel         ###   ########.fr       */
@@ -12,25 +12,14 @@
 
 #include "cub3d.h"
 
-int worldMAP[8][8] = {
-	{1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1}
-};
-
 int	main(int ac, char **av)
 {
 	t_data	data;
 
 	if (ac != 2)
 		return (ft_error("main.c", ERR_NOT_ENOUGHT_ARGS));
-	ft_parse(av[1], &data);
 	ft_memset(&data, 0, sizeof(t_data));
+	ft_parse(av[1], &data);
 	init_mlx(&data);
 	data.player = malloc(sizeof(t_player));
 	if (!data.player)
