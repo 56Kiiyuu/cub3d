@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/01 16:43:04 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:03:37 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define ERR_PARSER_SPACE_PATH 8
 # define ERR_PARSER_BAD_KEYWORD 9
 # define ERR_PARSER_BAD_NUMBER_RGB 10
+# define ERR_PARSER_MANY_SPAWN 11
+# define ERR_PARSER_NO_SPAWN 12
 
 typedef struct s_rgb
 {
@@ -147,6 +149,7 @@ int		ft_isspace(char c);
 void	ft_fill_data_info(char *str, char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
 void	parse_rgb(int *rgb, char *line);
+void	parse_spawn(t_data *data);
 
 // Error
 int		ft_error(char *from, int code);
