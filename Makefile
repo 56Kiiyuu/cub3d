@@ -21,6 +21,7 @@ SRC =	src/main.c \
 		src/movement/valid_move.c \
 		src/parsing/parse_rgb.c \
 		src/parsing/parse_spawn.c \
+		src/parsing/check_map.c
 
 OBJS = ${SRC:.c=.o}
 
