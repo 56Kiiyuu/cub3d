@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 16:43:30 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/04 17:02:16 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/04 17:17:23 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	parse_spawn(t_data *data)
 			j++;
 		}
 		i++;
+		j = 0;
 	}
 	if (data->player->direction == '\0')
 		exit(ft_error("parse_spawn.c", ERR_PARSER_NO_SPAWN));
