@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 15:32:34 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/05 11:10:57 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,6 @@ void	render_bg(t_data *data)
 			x++;
 		}
 		y++;
-	}
-}
-
-/* FCNT de TEST*/
-void	draw_colon(t_data *data, int x, int start, int end, int color)
-{
-	while (start <= end)
-	{
-		mlx_pixel_put_custom(&data->img, x, start, color);
-		start++;
 	}
 }
 
