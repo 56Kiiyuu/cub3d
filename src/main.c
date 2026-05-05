@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 17:21:42 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/05 10:51:58 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	main(int ac, char **av)
 	data.img.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.pixel_bits, &data.img.len_line, &data.img.endian);
 	mlx_hook(data.win, 17, 0L, (int (*)(void))((void *)quit_cub3d), &data);
-	mlx_hook(data.win, 2, 1L << 0, handle_keypress, &data);
-	mlx_hook(data.win, 3, 1L << 1, handle_keyrelease, &data);
-	mlx_loop_hook(data.mlx, render, &data);
+	mlx_hook(data.win, 2, 1L << 0, (int (*)(void))((void *)handle_keypress), &data);
+	mlx_hook(data.win, 3, 1L << 1, (int (*)(void))((void *)handle_keyrelease), &data);
+	mlx_loop_hook(data.mlx, (int (*)(void))((void *)render), &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
