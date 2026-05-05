@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/05 11:11:08 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/05 11:50:18 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,12 @@ void	free_textures(t_data *data);
 /*MOVEMENT*/
 void	init_player_direction(t_data *data);
 int		move_player(t_data *data);
+int		rotate_left_right(t_data *data, double rotate_speed);
 int		rotate_player(t_data *data, double rot_dir);
 int		validate_move(t_data *data, double newX, double newY);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
+int		handle_mouse(int x, int y, t_data *data);
 
 void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);
