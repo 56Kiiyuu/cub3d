@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:50:34 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 16:37:46 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/04 17:48:49 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,19 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 		mlx_pixel_put_custom(&data->img, x, y, ray->color);
 		y++;
 	}
+}
+
+void	free_textures(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (data->texture[i].img)
+			mlx_destroy_image(data->mlx, data->texture[i].img);
+		i++;
+	}
+	if (data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
 }

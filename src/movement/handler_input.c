@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 18:02:12 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:23:31 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/05 11:51:02 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,22 @@ int	handle_keyrelease(int keycode, t_data *data)
 		data->player->rotate = 0;// TURN LEFT
 	if (keycode == 65363)
 		data->player->rotate = 0;// TURN RIGHT
+	return (0);
+}
+
+/*BONUS*/
+int	handle_mouse(int x, int y, t_data *data)
+{
+	int		diff;
+	double	mouse_speed;
+
+	(void)y;
+	diff = x - (WIN_WIDTH / 2);
+	if (diff != 0)
+	{
+		mouse_speed = diff * 0.001;
+		rotate_left_right(data, mouse_speed);
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	}
 	return (0);
 }

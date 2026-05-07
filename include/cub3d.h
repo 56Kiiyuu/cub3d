@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
 /*   Updated: 2026/05/04 18:01:04 by gchalmel         ###   ########.fr       */
@@ -32,6 +32,10 @@
 /* FENETRE */
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 1024
+
+/*MINIMAP*/
+# define MM_CASE_SIZE 10
+# define MM_OFFSET 20
 
 /* ERRORS CODE*/
 # define ERR_NOT_ENOUGHT_ARGS 0
@@ -134,17 +138,20 @@ void	init_textures(t_data *data);
 
 int		render(t_data *data);
 void	mlx_pixel_put_custom(t_img *img, int x, int y, int color);
-void	draw_colon(t_data *data, int x, int start, int end, int color);
 void	raycasting(t_data *data);
+void	draw_minimap(t_data *data);
 void	draw_textured_line(t_data *data, t_ray *ray, int x);
+void	free_textures(t_data *data);
 
 /*MOVEMENT*/
 void	init_player_direction(t_data *data);
 int		move_player(t_data *data);
+int		rotate_left_right(t_data *data, double rotate_speed);
 int		rotate_player(t_data *data, double rot_dir);
 int		validate_move(t_data *data, double newX, double newY);
 int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
+int		handle_mouse(int x, int y, t_data *data);
 
 void	clean_exit(t_data *data, int code);
 int		quit_cub3d(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 15:54:00 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/07 15:45:54 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	raycasting(t_data *data)
 {
 	t_ray	ray;
 	int		x;
-	int		color;
 
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -116,9 +115,6 @@ void	raycasting(t_data *data)
 		setup_dda(&ray, data->player);
 		process_dda(&ray, data);
 		calculate_line_h(&ray, data->player);
-		color = 0x2E2E2D;
-		if (ray.side == 1)
-			color = 0xAA0000;
 		draw_textured_line(data, &ray, x);
 		x++;
 	}

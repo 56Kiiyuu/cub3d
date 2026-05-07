@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 15:32:34 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/07 15:45:57 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,12 @@ void	render_bg(t_data *data)
 	}
 }
 
-/* FCNT de TEST*/
-void	draw_colon(t_data *data, int x, int start, int end, int color)
-{
-	while (start <= end)
-	{
-		mlx_pixel_put_custom(&data->img, x, start, color);
-		start++;
-	}
-}
-
 int	render(t_data *data)
 {
 	move_player(data);
 	render_bg(data);
 	raycasting(data);
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

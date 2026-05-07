@@ -14,6 +14,7 @@ SRC =	src/main.c \
 		src/render/render.c \
 		src/render/raycasting.c \
 		src/render/textures.c \
+		src/render/minimap.c \
 		src/movement/handler_input.c \
 		src/movement/player_direction.c \
 		src/movement/player_move.c \
