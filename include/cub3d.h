@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 15:46:00 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:04:52 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # include <string.h>
 # include <unistd.h>
 # include <errno.h>
+
+/* RULES */
+# ifndef BONUS
+#  define BONUS 1
+# endif
 
 /* MACROS */
 # define FALSE 0
