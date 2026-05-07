@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kiiyuu <kiiyuu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/05 11:10:57 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/07 14:09:29 by kiiyuu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	render(t_data *data)
 	move_player(data);
 	render_bg(data);
 	raycasting(data);
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }
