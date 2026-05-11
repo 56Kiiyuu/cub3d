@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/11 15:15:07 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/11 15:16:45 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_map(t_data *data)
 	{
 		while (data->map[i][j] != '\0')
 		{
-			if (data->map[i][j] == '0' || data->map[i][j] == ' ')
+			if (data->map[i][j] == '0')
 			{
 				if (!check_left(data, j, i))
 					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
