@@ -23,6 +23,11 @@
 # include <unistd.h>
 # include <errno.h>
 
+/* RULES */
+# ifndef BONUS
+#  define BONUS 1
+# endif
+
 /* MACROS */
 # define FALSE 0
 # define TRUE 1

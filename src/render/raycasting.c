@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 15:45:54 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:11:06 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	process_dda(t_ray *ray, t_data *data)
 		current_line = data->map[ray->mapY];
 		if (ray->mapX < 0 || current_line[ray->mapX] == '\0')
 			break ;
+/*MODIF POUR LES DOORS*/
 		if (current_line[ray->mapX] == '1')
 			hit = 1;
 	}

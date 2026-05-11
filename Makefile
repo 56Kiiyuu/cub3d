@@ -42,14 +42,14 @@ $(NAME): ${OBJS}
 all:	${NAME}
 
 clean:
-		make -C ${LIBFT_DIR} clean
-		make -C ${MLX_DIR} clean
-		rm -f ${OBJS}
+	rm -rf $(OBJ_PATH)
+	make -C libft clean
+	make -C minilibx-linux clean
 
-fclean: clean
-		make -C ${LIBFT_DIR} fclean
-		rm -f ${NAME}
+fclean:	clean
+	rm -f $(NAME)
+	make -C libft fclean
 
-re: fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
