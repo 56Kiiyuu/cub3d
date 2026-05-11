@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/11 15:08:23 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/11 15:57:26 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define ERR_PARSER_MANY_SPAWN 11
 # define ERR_PARSER_NO_SPAWN 12
 # define PARSING_WRONG_MAP 13
+# define PARSING_NO_COLOR 14
 
 typedef struct s_rgb
 {
