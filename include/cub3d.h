@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 18:04:52 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/11 15:57:26 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define ERR_PARSER_BAD_NUMBER_RGB 10
 # define ERR_PARSER_MANY_SPAWN 11
 # define ERR_PARSER_NO_SPAWN 12
+# define PARSING_WRONG_MAP 13
+# define PARSING_NO_COLOR 14
 
 typedef struct s_rgb
 {
@@ -170,6 +172,7 @@ char	*ft_fill_data_info(char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
 void	parse_rgb(int *rgb, char *line);
 void	parse_spawn(t_data *data);
+void	check_map(t_data *data);
 
 // Error
 int		ft_error(char *from, int code);

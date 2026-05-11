@@ -1,57 +1,45 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
-BONUS = 0
+CFLAGS = -Wall -Wextra -Werror -g
+INCLUDE = -I include
 
-SRC_PATH = src/
-OBJ_PATH = objects/
-INC = -I include -I libft -I minilibx-linux
+SRC =	src/main.c \
+		src/error_handling/errors.c \
+		src/exit.c \
+		src/init/init_mlx.c \
+		src/init/init_textures.c \
+		src/parsing/parse.c \
+		src/parsing/texture_directions.c \
+		src/parsing/parse_map.c \
+		src/render/render.c \
+		src/render/raycasting.c \
+		src/render/textures.c \
+		src/render/minimap.c \
+		src/movement/handler_input.c \
+		src/movement/player_direction.c \
+		src/movement/player_move.c \
+		src/movement/player_rotation.c \
+		src/movement/valid_move.c \
+		src/parsing/parse_rgb.c \
+		src/parsing/parse_spawn.c \
+		src/parsing/check_map.c
 
-LIBFT = libft/libft.a
-MLX = minilibx-linux/libmlx.a
-LIBS = -L libft -lft -L minilibx-linux -lmlx -lXext -lX11 -lm -lbsd
+OBJS = ${SRC:.c=.o}
 
-SRC =	main.c \
-		error_handling/errors.c \
-		exit.c \
-		init/init_mlx.c \
-		init/init_textures.c \
-		parsing/parse.c \
-		parsing/texture_directions.c \
-		parsing/parse_map.c \
-		render/render.c \
-		render/raycasting.c \
-		render/textures.c \
-		render/minimap.c \
-		movement/handler_input.c \
-		movement/player_direction.c \
-		movement/player_move.c \
-		movement/player_rotation.c \
-		movement/valid_move.c \
-		parsing/parse_rgb.c \
-		parsing/parse_spawn.c
+LIBFT_DIR = libft
+MLX_DIR = minilibx-linux
+LIBFT = -L ${LIBFT_DIR} -lft
+MLX	= -L ${MLX_DIR} -lmlx -Ilmlx -lXext -lX11 -lm
 
-SRCS = $(addprefix $(SRC_PATH), $(SRC))
-OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
+.c.o:
+		${CC} ${CFLAGS} ${INCLUDE} -c $< -o ${<:.c=.o}
 
-all:	$(NAME)
+$(NAME): ${OBJS}
+		make -C ${LIBFT_DIR}
+		make -C ${MLX_DIR}
+		${CC} ${OBJS} ${LIBFT} ${MLX} -o ${NAME}
 
-bonus:	fclean
-	make all BONUS=1
-
-$(NAME):	$(MLX) $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) $(OBJS) $(LIBS) -o $(NAME)
-	@echo "Cub3D: $(if $(filter 1,$(BONUS)),BONUS,MANDATORY)"
-
-$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -DBONUS=$(BONUS) -c $< -o $@ $(INC)
-
-$(LIBFT):
-	make -sC libft
-
-$(MLX):
-	make -sC minilibx-linux
+all:	${NAME}
 
 clean:
 	rm -rf $(OBJ_PATH)
