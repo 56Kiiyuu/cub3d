@@ -1,0 +1,19 @@
+F 76,76,76
+C 99,99,99
+
+NO ./textures/simonkraft/cobblestone.xpm
+SO ./textures/simonkraft/cobblestone_01.xpm
+WE ./textures/simonkraft/mossy_cobblestone1.xpm
+EA ./textures/simonkraft/cobblestone_02.xpm
+DO ./textures/test/north.xpm
+
+1111111111111111111
+10WD001001001000001
+1011000001000001001
+10010010011D1101D11
+1001D11000001001001
+1000000000000001001
+1001111111111001001
+1111000000000001011
+1000000001000000001
+1111111111111111111
