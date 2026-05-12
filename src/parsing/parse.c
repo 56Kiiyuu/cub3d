@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/11 15:58:11 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/12 15:18:14 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_init_param(t_fileinfo *fi)
 	fi->no_path = NULL;
 	fi->so_path = NULL;
 	fi->we_path = NULL;
+	fi->do_path = NULL;
 	fi->ceiling_color = -1;
 	fi->floor_color = -1;
 }
@@ -55,6 +56,8 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 			data->params.we_path = ft_fill_data_info(&line[i + 2]);
 		else if (!ft_strncmp(&line[i], "EA", 2))
 			data->params.ea_path = ft_fill_data_info(&line[i + 2]);
+		else if (BONUS && !ft_strncmp(&line[i], "DO", 2))
+			data->params.do_path = ft_fill_data_info(&line[i + 2]);
 		else if (!ft_strncmp(&line[i], "F", 1) && !is_map)
 			parse_rgb(&data->params.floor_color, &line[i + 1]);
 		else if (!ft_strncmp(&line[i], "C", 1) && !is_map)

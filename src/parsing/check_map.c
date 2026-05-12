@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/11 15:16:45 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/12 15:40:52 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,27 @@ void	check_map(t_data *data)
 {
 	int	i;
 	int	j;
+	int	has_door;
 
 	i = 0;
-	j = 0;
+	has_door = 0;
 	while (i < data->map_size_y)
 	{
+		j = 0;
 		while (data->map[i][j] != '\0')
 		{
-			if (data->map[i][j] == '0')
+			if (data->map[i][j] == 'D')
+				has_door = 1;
+			if (data->map[i][j] == '0' || (BONUS && data->map[i][j] == 'D'))
 			{
-				if (!check_left(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
-				else if (!check_right(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
-				else if (!check_up(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
-				else if (!check_down(data, j, i))
+				if (!check_left(data, j, i) || !check_right(data, j, i)
+					|| !check_up(data, j, i) || !check_down(data, j, i))
 					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
 			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
+	if (BONUS && has_door && !data->params.do_path)
+		return (exit(ft_error("check_map.c", PARSING_NO_TEX_DOORS)));
 }

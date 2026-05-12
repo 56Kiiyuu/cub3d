@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:54:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 18:11:06 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/12 15:39:30 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	setup_dda(t_ray *ray, t_player *player)
 void	process_dda(t_ray *ray, t_data *data)
 {
 	int		hit;
-	char	*current_line;
+	char	c;
 
 	hit = 0;
 	while (hit == 0)
@@ -73,13 +73,20 @@ void	process_dda(t_ray *ray, t_data *data)
 		}
 		if (ray->mapY < 0 || ray->mapY >= data->map_size_y)
 			break ;
-		current_line = data->map[ray->mapY];
-		if (ray->mapX < 0 || current_line[ray->mapX] == '\0')
+		if (ray->mapX < 0 || data->map[ray->mapY][ray->mapX] == '\0')
 			break ;
-/*MODIF POUR LES DOORS*/
-		if (current_line[ray->mapX] == '1')
-			hit = 1;
+		c = data->map[ray->mapY][ray->mapX];
+		if (c == '1')
+			hit = 1; // WALL
+		else if (BONUS && c == 'D')
+		{
+			if (data->texture[4].img != NULL)
+				hit = 2; // DOOR
+			else
+				hit = 0;
+		}
 	}
+	ray->hit_type = hit;
 }
 
 /*Calculate HEIGHT*/

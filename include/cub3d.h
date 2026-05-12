@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/11 15:57:26 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/12 15:41:01 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define ERR_PARSER_NO_SPAWN 12
 # define PARSING_WRONG_MAP 13
 # define PARSING_NO_COLOR 14
+# define PARSING_NO_TEX_DOORS 15
 
 typedef struct s_rgb
 {
@@ -72,6 +73,7 @@ typedef struct s_fileinfo
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
+	char	*do_path;
 	int		floor_color;
 	int		ceiling_color;
 }	t_fileinfo;
@@ -114,7 +116,8 @@ typedef struct s_data
 	t_fileinfo	params;
 	t_player	*player;
 	t_img		img;
-	t_img		texture[4];
+	t_img		texture[5];
+	t_img		door_tex;
 }	t_data;
 
 typedef struct s_ray
@@ -138,6 +141,7 @@ typedef struct s_ray
 	double			wallX;
 	double			tex_pos;
 	unsigned int	color;
+	int				hit_type;
 }	t_ray;
 
 void	init_mlx(t_data *data);

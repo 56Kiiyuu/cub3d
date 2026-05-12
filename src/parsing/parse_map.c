@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/04 17:53:17 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/12 15:21:07 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (!ft_strncmp(line, "1", 1) || !ft_strncmp(line, " ", 1))
+		if (!ft_strncmp(line, "1", 1) || !ft_strncmp(line, " ", 1)
+			|| (BONUS && !ft_strncmp(line, "D", 1)))
 		{
 			data->map[i] = line;
 			if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
