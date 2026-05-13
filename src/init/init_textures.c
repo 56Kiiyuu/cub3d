@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:46:54 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 16:19:04 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/12 15:38:10 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,8 @@ void	init_textures(t_data *data)
 	load_xpm(data, &data->texture[1], data->params.so_path); // 1 = SO
 	load_xpm(data, &data->texture[2], data->params.we_path); // 2 = WE
 	load_xpm(data, &data->texture[3], data->params.ea_path); // 3 = EA
+	if (BONUS && data->params.do_path)
+		load_xpm(data, &data->texture[4], data->params.do_path);
+	else
+		data->texture[4].img = NULL;
 }

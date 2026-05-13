@@ -6,11 +6,26 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 18:02:12 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/05 11:51:02 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/12 15:29:24 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	toggle_door(t_data *data)
+{
+	int	dx;
+	int	dy;
+
+	//Check case in front player
+	dx = (int)(data->player->posX + data->player->dirX * 0.5);
+	dy = (int)(data->player->posY + data->player->dirY * 0.5);
+
+	if (data->map[dy][dx] == 'D')
+		data->map[dy][dx] = 'O'; //OPEN
+	else if (data->map[dy][dx] == 'O')
+		data->map[dy][dx] = 'D'; //CLOSE
+}
 
 int	handle_keypress(int keycode, t_data *data)
 {
@@ -28,6 +43,8 @@ int	handle_keypress(int keycode, t_data *data)
 		data->player->rotate = -1;// TURN LEFT
 	if (keycode == 65363)
 		data->player->rotate = 1;// TURN RIGHT
+	if (BONUS && keycode == 'e')
+		toggle_door(data);
 	return (0);
 }
 
@@ -45,6 +62,8 @@ int	handle_keyrelease(int keycode, t_data *data)
 		data->player->rotate = 0;// TURN LEFT
 	if (keycode == 65363)
 		data->player->rotate = 0;// TURN RIGHT
+	if (BONUS && keycode == 'e')
+		toggle_door(data);
 	return (0);
 }
 
