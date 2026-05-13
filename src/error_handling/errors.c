@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/11 15:57:59 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/13 17:08:15 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(char *from, int code)
 {
-	char *err[15] =
+	char *err[16] =
 	{
 		"Pas assez d'argument: ./cub3d <filename.cub>",
 		"L'extension du fichier n'est pas .cub",
@@ -30,7 +30,8 @@ int	ft_error(char *from, int code)
 		"Plusieurs point de spawn ont ete detectes",
 		"Aucun spawn n'a ete defini",
 		"Map is wrong",
-		"Aucune floor color et/ou ceiling color defini"
+		"Aucune floor color et/ou ceiling color defini",
+		"Il faut bien definir les couleurs rgb: R:xxx,G:xxx,B:xxx"
 	};
 
 	return (error_msg(from, err[code], code));
