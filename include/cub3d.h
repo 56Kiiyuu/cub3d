@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/13 15:06:22 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 17:06:50 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@
 # define ERR_PARSER_NO_SPAWN 12
 # define PARSING_WRONG_MAP 13
 # define PARSING_NO_COLOR 14
-# define PARSING_NO_TEX_DOORS 15
-# define PARSING_MAP_OPEN_BORDERS 16
-# define PARSING_MAP_OPEN_EMPTY 17
-# define PARSING_NORMALIZE_MAP 18
-# define PARSING_NOT_OPEN_FILE 19
-# define MALLOC_ERR 20
+# define PARSING_NO_3_COLOR 15
+# define PARSING_NO_TEX_DOORS 16
+# define PARSING_MAP_OPEN_BORDERS 17
+# define PARSING_MAP_OPEN_EMPTY 18
+# define PARSING_NORMALIZE_MAP 19
+# define PARSING_NOT_OPEN_FILE 20
+# define MALLOC_ERR 21
 
 typedef struct s_rgb
 {

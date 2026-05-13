@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/13 15:07:00 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 17:16:33 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,27 @@ int	ft_loop_parse(const char *filename, t_data *data)
 		i = 0;
 		while (line[i] && ft_isspace(line[i]))
 			i++;
+		if (!ft_strncmp(&line[i], "NO", 2))
+			data->params.no_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "SO", 2))
+			data->params.so_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "WE", 2))
+			data->params.we_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "EA", 2))
+			data->params.ea_path = ft_fill_data_info(&line[i + 2]);
+		else if (!ft_strncmp(&line[i], "F", 1) && !is_map)
+			parse_rgb(&data->params.floor_color, &line[i + 1]);
+		else if (!ft_strncmp(&line[i], "C", 1) && !is_map)
+			parse_rgb(&data->params.ceiling_color, &line[i + 1]);
+		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
+		{
+			is_map = 1;
+			size_map++;
+		}
+		else if (is_map)
+			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
+		else if (!(line[i] == '\n') && !(line[i] == '\0'))
+			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		handle_line_content(data, line, i, &is_map);
 		free(line);
 		data->tmp_line = NULL;

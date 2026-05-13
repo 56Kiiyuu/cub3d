@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:44:13 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/13 14:44:17 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 17:07:00 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,26 @@ void	parse_rgb(t_data *data, int *rgb, char *line)
 	int	green;
 	int	blue;
 
+	int (count_rgb) = 0;
 	i = 0;
-	red = get_color_val(data, line, &i);
-	if (line[i++] != ',')
-		clean_exit(data, ft_error("parse_rgb.c", ERR_PARSER_BAD_NUMBER_RGB));
-	green = get_color_val(data, line, &i);
-	if (line[i++] != ',')
-		clean_exit(data, ft_error("parse_rgb.c", ERR_PARSER_BAD_NUMBER_RGB));
-	blue = get_color_val(data, line, &i);
-	while (line[i] && ft_isspace(line[i]))
-		i++;
-	if (line[i] != '\0' && line[i] != '\n')
-		clean_exit(data, ft_error("parse_rgb.c", PARSING_NO_COLOR));
-	*rgb = (red << 16 | green << 8 | blue);
+	while (line[i] != '\0' && line[i] != '\n')
+	{
+		while (line[i] != '\0' && ft_isspace(line[i]))
+			i++;
+		if (line[i] == ',')
+		{
+			i++;
+			while (line[i] != '\0' && ft_isspace(line[i]))
+				i++;
+		}
+		cn = count_number(&line[i]);
+		count_rgb++;
+		if ((cn > 3 || cn <= 0))
+			exit(ft_error("parse_rgb.c", ERR_PARSER_BAD_NUMBER_RGB));
+		*rgb = *rgb << 8 | ft_atoi(&line[i]);
+		while (line[i] != '\0' && ft_isdigit(line[i]))
+			i++;
+	}
+	if (count_rgb != 3)
+		exit(ft_error("parse_rgb.c", PARSING_NO_3_COLOR));
 }

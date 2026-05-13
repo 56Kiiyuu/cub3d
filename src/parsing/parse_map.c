@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/13 13:35:11 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 17:17:10 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,25 +78,26 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
-	i = 0;
+	int (i) = 0;
+	int (j) = 0;
 	fd = open(filename, O_RDONLY);
 	data->map = malloc(sizeof(char *) * (size_map + 1));
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (is_map_line(line))
+		while (line[j] != '\0' && ft_isspace(line[j]))
+			j++;
+		if (!ft_strncmp(&line[j], "1", 1))
 		{
-			data->map[i] = line;
+			data->map[i] = ft_strdup(line);
 			if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
 				data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
-			printf("%s\n", data->map[i]); // REMOVE FOR NORM
 			i++;
 		}
-		else
-			free(line);
+		free(line);
 		line = get_next_line(fd);
+		j = 0;
 	}
 	data->map[i] = NULL;
 	data->map_size_y = i;
