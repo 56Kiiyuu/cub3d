@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
 /*   Updated: 2026/05/13 17:06:50 by gchalmel         ###   ########.fr       */
@@ -59,6 +59,12 @@
 # define PARSING_WRONG_MAP 13
 # define PARSING_NO_COLOR 14
 # define PARSING_NO_3_COLOR 15
+# define PARSING_NO_TEX_DOORS 16
+# define PARSING_MAP_OPEN_BORDERS 17
+# define PARSING_MAP_OPEN_EMPTY 18
+# define PARSING_NORMALIZE_MAP 19
+# define PARSING_NOT_OPEN_FILE 20
+# define MALLOC_ERR 21
 
 typedef struct s_rgb
 {
@@ -73,6 +79,7 @@ typedef struct s_fileinfo
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
+	char	*do_path;
 	int		floor_color;
 	int		ceiling_color;
 }	t_fileinfo;
@@ -115,7 +122,10 @@ typedef struct s_data
 	t_fileinfo	params;
 	t_player	*player;
 	t_img		img;
-	t_img		texture[4];
+	t_img		texture[5];
+	t_img		door_tex;
+	int			fd;
+	char		*tmp_line;
 }	t_data;
 
 typedef struct s_ray
@@ -139,6 +149,7 @@ typedef struct s_ray
 	double			wallX;
 	double			tex_pos;
 	unsigned int	color;
+	int				hit_type;
 }	t_ray;
 
 void	init_mlx(t_data *data);
@@ -149,7 +160,6 @@ void	mlx_pixel_put_custom(t_img *img, int x, int y, int color);
 void	raycasting(t_data *data);
 void	draw_minimap(t_data *data);
 void	draw_textured_line(t_data *data, t_ray *ray, int x);
-void	free_textures(t_data *data);
 
 /*MOVEMENT*/
 void	init_player_direction(t_data *data);
@@ -169,13 +179,20 @@ int		error_msg(char *from, char *msg, int code);
 // Parsing
 void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
-char	*ft_fill_data_info(char *line);
+char	*ft_fill_data_info(t_data *data, char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
-void	parse_rgb(int *rgb, char *line);
+void	parse_rgb(t_data *data, int *rgb, char *line);
 void	parse_spawn(t_data *data);
 void	check_map(t_data *data);
 
 // Error
 int		ft_error(char *from, int code);
+
+// Free
+void	free_textures_path(t_data *data);
+void	free_map(t_data *data);
+void	free_gnl_stash(int fd);
+void	free_textures(t_data *data);
+void	free_parse_data(t_data *data);
 
 #endif
