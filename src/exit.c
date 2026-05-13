@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/04 17:50:03 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 14:56:52 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ void	clean_exit(t_data *data, int code)
 {
 	if (!data)
 		exit(code);
-	free_textures(data);
+	if (data->tmp_line)
+		free(data->tmp_line);
+	if (data->fd > 0)
+		free_gnl_stash(data->fd);
+	free_parse_data(data);
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
-		mlx_loop_end(data->mlx);
 		free(data->mlx);
 	}
-	free(data->player);
+	if (data->player)
+		free(data->player);
 	exit(code);
 }
 

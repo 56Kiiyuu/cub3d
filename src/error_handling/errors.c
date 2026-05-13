@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/12 15:42:05 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 12:40:57 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_error(char *from, int code)
 {
-	char *err[16] =
+	char *err[21] =
 	{
 		"Pas assez d'argument: ./cub3d <filename.cub>",
 		"L'extension du fichier n'est pas .cub",
@@ -31,7 +31,12 @@ int	ft_error(char *from, int code)
 		"Aucun spawn n'a ete defini",
 		"Map is wrong",
 		"Aucune floor color et/ou ceiling color defini",
-		"Door 'D' found but no DO texture"
+		"Door 'D' found but no DO texture",
+		"Map open on borders",
+		"Map open: empty space neighbor",
+		"Failed to normalize map line",
+		"Could not open file",
+		"Malloc failed"
 	};
 
 	return (error_msg(from, err[code], code));

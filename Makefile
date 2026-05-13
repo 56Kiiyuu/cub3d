@@ -19,6 +19,9 @@ SRC =	main.c \
 		parsing/parse.c \
 		parsing/texture_directions.c \
 		parsing/parse_map.c \
+		parsing/parse_rgb.c \
+		parsing/parse_spawn.c \
+		parsing/check_map.c \
 		render/render.c \
 		render/raycasting.c \
 		render/textures.c \
@@ -28,9 +31,7 @@ SRC =	main.c \
 		movement/player_move.c \
 		movement/player_rotation.c \
 		movement/valid_move.c \
-		parsing/parse_rgb.c \
-		parsing/parse_spawn.c \
-		parsing/check_map.c
+		free.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))

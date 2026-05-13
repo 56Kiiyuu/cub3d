@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 13:31:35 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 15:45:50 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/13 14:40:10 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,58 +58,6 @@ void	draw_line_minimap(t_data *data, int start[2], int end[2])
 		y += delta[1];
 	}
 }
-/*
-// DRAW PLAYER ON MINIMAP
-void	draw_player_minimap(t_data *data)
-{
-	int	pos[2];
-	int	dir[2];
-	int	i;
-	int	j;
-
-	pos[0] = (data->player->posX * MM_CASE_SIZE) + MM_OFFSET;
-	pos[1] = (data->player->posY * MM_CASE_SIZE) + MM_OFFSET;
-	i = -3;
-	while (++i < 2)
-	{
-		j = -3;
-		while (++j < 2)
-			mlx_pixel_put_custom(&data->img, pos[0] + j,
-				pos[1] + i, 0x00FF0000);
-	}
-	dir[0] = pos[0] + (data->player->dirX * 10);
-	dir[1] = pos[1] + (data->player->dirY * 10);
-	draw_line_minimap(data, pos, dir);
-}
-
-// DRAW MINIMAP (not centered on PLAYER)
-void	draw_minimap(t_data *data)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	y = 0;
-	while (y < data->map_size_y)
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
-				color = 0x00666666;
-			else if (data->map[y][x] == '0'
-				|| ft_strchr("NSEW", data->map[y][x]))
-				color = 0x00222222;
-			if (color != -1)
-				draw_square(data, x * MM_CASE_SIZE + MM_OFFSET,
-					y * MM_CASE_SIZE + MM_OFFSET, color);
-			x++;
-		}
-		y++;
-	}
-	draw_player_minimap(data);
-}
-*/
 
 int	get_minimap_color(t_data *data, int x, int y)
 {
@@ -118,6 +66,8 @@ int	get_minimap_color(t_data *data, int x, int y)
 		return (0x000000);
 	if (data->map[y][x] == '1')
 		return (0x666666);
+	if (data->map[y][x] == 'D')
+		return (0x2B00FF);
 	return (0x222222);
 }
 
