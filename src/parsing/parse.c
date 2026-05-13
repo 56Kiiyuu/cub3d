@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/11 15:58:11 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/13 17:16:33 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	ft_loop_parse(const char *filename, char *line, t_data *data)
 			is_map = 1;
 			size_map++;
 		}
+		else if (is_map)
+			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		else if (!(line[i] == '\n') && !(line[i] == '\0'))
 			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		free(line);

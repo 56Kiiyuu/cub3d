@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:44:13 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/04 15:24:26 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/13 17:07:00 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	parse_rgb(int *rgb, char *line)
 	int	i;
 	int	cn;
 
+	int (count_rgb) = 0;
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
 	{
@@ -41,10 +42,13 @@ void	parse_rgb(int *rgb, char *line)
 				i++;
 		}
 		cn = count_number(&line[i]);
+		count_rgb++;
 		if ((cn > 3 || cn <= 0))
 			exit(ft_error("parse_rgb.c", ERR_PARSER_BAD_NUMBER_RGB));
 		*rgb = *rgb << 8 | ft_atoi(&line[i]);
 		while (line[i] != '\0' && ft_isdigit(line[i]))
 			i++;
 	}
+	if (count_rgb != 3)
+		exit(ft_error("parse_rgb.c", PARSING_NO_3_COLOR));
 }
