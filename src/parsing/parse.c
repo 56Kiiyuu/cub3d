@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/14 16:24:24 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/14 16:29:20 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,32 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-void	ft_line_handler(t_data *data, char *line)
+void	ft_line_handler(t_data *data, char *line, int *i)
 {
-	int (i) = 0;
 	int (is_map) = 0;
-	int (stop_parse) = 0;
-	while (line[i] && ft_isspace(line[i]))
-		i++;
-	if (!ft_strncmp(&line[i], "NO", 2))
-		data->params.no_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "SO", 2))
-		data->params.so_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "WE", 2))
-		data->params.we_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "EA", 2))
-		data->params.ea_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "F", 1) && !is_map)
-		parse_rgb(&data->params.floor_color, &line[i + 1]);
-	else if (!ft_strncmp(&line[i], "C", 1) && !is_map)
-		parse_rgb(&data->params.ceiling_color, &line[i + 1]);
-	else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
+	int (sp) = 0;
+	while (line[*i] && ft_isspace(line[*i]))
+		*i += 1;
+	if (!ft_strncmp(&line[*i], "NO", 2))
+		data->params.no_path = ft_fill_data_info(&line[*i + 2]);
+	else if (!ft_strncmp(&line[*i], "SO", 2))
+		data->params.so_path = ft_fill_data_info(&line[*i + 2]);
+	else if (!ft_strncmp(&line[*i], "WE", 2))
+		data->params.we_path = ft_fill_data_info(&line[*i + 2]);
+	else if (!ft_strncmp(&line[*i], "EA", 2))
+		data->params.ea_path = ft_fill_data_info(&line[*i + 2]);
+	else if (!ft_strncmp(&line[*i], "F", 1) && !is_map)
+		parse_rgb(&data->params.floor_color, &line[*i + 1]);
+	else if (!ft_strncmp(&line[*i], "C", 1) && !is_map)
+		parse_rgb(&data->params.ceiling_color, &line[*i + 1]);
+	else if (!ft_strncmp(&line[*i], "1", 1) || !ft_strncmp(&line[*i], " ", 1))
 	{
 		is_map = 1;
 		data->map_size_y++;
 	}
-	else if (is_map && !stop_parse)
-		stop_parse = 1;
-	else if (stop_parse && is_map)
-		exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
-	else if (!(line[i] == '\n') && !(line[i] == '\0'))
+	else if (is_map && !sp)
+		sp = 1;
+	else if ((!(line[*i] == '\n') && !(line[*i] == '\0')) || (sp && is_map))
 		exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 }
 
@@ -72,6 +69,7 @@ void	ft_line_handler(t_data *data, char *line)
 int	ft_loop_parse(const char *filename, t_data *data)
 {
 	char	*line;
+	int		i;
 
 	data->fd = open(filename, O_RDONLY);
 	if (data->fd < 0)
@@ -81,7 +79,8 @@ int	ft_loop_parse(const char *filename, t_data *data)
 		line = get_next_line(data->fd);
 		if (!line)
 			break ;
-		ft_line_handler(data, line);
+		i = 0;
+		ft_line_handler(data, line, &i);
 		free(line);
 	}
 	close(data->fd);
