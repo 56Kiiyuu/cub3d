@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/13 17:17:10 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/14 16:32:52 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	normalize_map(t_data *data)
 	}
 }
 
-// FIND MAP LINE (if is map content)
 int	is_map_line(char *line)
 {
 	int	i;
@@ -65,7 +64,7 @@ int	is_map_line(char *line)
 		return (0);
 	while (line[i] && line[i] != '\n')
 	{
-		if (!ft_strchr(" 01NSEWDO", line[i])) // CHARACTERS ALLOWED
+		if (!ft_strchr(" 01NSEWDO", line[i]))
 			return (0);
 		if (ft_strchr("01NSEWDO", line[i]))
 			has_content = 1;
@@ -100,7 +99,6 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 		j = 0;
 	}
 	data->map[i] = NULL;
-	data->map_size_y = i;
 	normalize_map(data);
 	close(fd);
 }
