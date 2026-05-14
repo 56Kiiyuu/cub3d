@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/14 15:28:26 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/14 16:06:16 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,6 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-/* HANDLE LINE KEYS */
-void	handle_line_content(t_data *data, char *line, int i, int *is_map)
-{
-	if (!ft_strncmp(&line[i], "NO", 2))
-		data->params.no_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "SO", 2))
-		data->params.so_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "WE", 2))
-		data->params.we_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "EA", 2))
-		data->params.ea_path = ft_fill_data_info(&line[i + 2]);
-	else if (BONUS && !ft_strncmp(&line[i], "DO", 2))
-		data->params.do_path = ft_fill_data_info(&line[i + 2]);
-	else if (!ft_strncmp(&line[i], "F", 1) && !(*is_map))
-		parse_rgb(&data->params.floor_color, &line[i + 1]);
-	else if (!ft_strncmp(&line[i], "C", 1) && !(*is_map))
-		parse_rgb(&data->params.ceiling_color, &line[i + 1]);
-	else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
-	{
-		*is_map = 1;
-		data->map_size_y++;
-	}
-	else if (line[i] != '\n' && line[i] != '\0')
-		clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
-}
-
 /*
 	return size of map
 */
@@ -78,7 +52,6 @@ int	ft_loop_parse(const char *filename, t_data *data)
 		line = get_next_line(data->fd);
 		if (!line)
 			break ;
-		data->tmp_line = line;
 		i = 0;
 		while (line[i] && ft_isspace(line[i]))
 			i++;
@@ -103,9 +76,7 @@ int	ft_loop_parse(const char *filename, t_data *data)
 			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 		else if (!(line[i] == '\n') && !(line[i] == '\0'))
 			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
-		handle_line_content(data, line, i, &is_map);
 		free(line);
-		data->tmp_line = NULL;
 	}
 	close(data->fd);
 	data->fd = -1;
