@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/13 17:16:33 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/14 15:28:26 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 #include "../../libft/libft.h"
 #include <stdio.h>
 
-void	ft_init_param(t_fileinfo *fi)
+void	ft_init_param(t_data *data)
 {
-	fi->ea_path = NULL;
-	fi->no_path = NULL;
-	fi->so_path = NULL;
-	fi->we_path = NULL;
-	fi->do_path = NULL;
-	fi->ceiling_color = -1;
-	fi->floor_color = -1;
+	data->params.ea_path = NULL;
+	data->params.no_path = NULL;
+	data->params.so_path = NULL;
+	data->params.we_path = NULL;
+	data->params.do_path = NULL;
+	data->map_size_y = 0;
+	data->params.ceiling_color = -1;
+	data->params.floor_color = -1;
 }
 
 int	ft_isspace(char c)
@@ -37,19 +38,19 @@ int	ft_isspace(char c)
 void	handle_line_content(t_data *data, char *line, int i, int *is_map)
 {
 	if (!ft_strncmp(&line[i], "NO", 2))
-		data->params.no_path = ft_fill_data_info(data, &line[i + 2]);
+		data->params.no_path = ft_fill_data_info(&line[i + 2]);
 	else if (!ft_strncmp(&line[i], "SO", 2))
-		data->params.so_path = ft_fill_data_info(data, &line[i + 2]);
+		data->params.so_path = ft_fill_data_info(&line[i + 2]);
 	else if (!ft_strncmp(&line[i], "WE", 2))
-		data->params.we_path = ft_fill_data_info(data, &line[i + 2]);
+		data->params.we_path = ft_fill_data_info(&line[i + 2]);
 	else if (!ft_strncmp(&line[i], "EA", 2))
-		data->params.ea_path = ft_fill_data_info(data, &line[i + 2]);
+		data->params.ea_path = ft_fill_data_info(&line[i + 2]);
 	else if (BONUS && !ft_strncmp(&line[i], "DO", 2))
-		data->params.do_path = ft_fill_data_info(data, &line[i + 2]);
+		data->params.do_path = ft_fill_data_info(&line[i + 2]);
 	else if (!ft_strncmp(&line[i], "F", 1) && !(*is_map))
-		parse_rgb(data, &data->params.floor_color, &line[i + 1]);
+		parse_rgb(&data->params.floor_color, &line[i + 1]);
 	else if (!ft_strncmp(&line[i], "C", 1) && !(*is_map))
-		parse_rgb(data, &data->params.ceiling_color, &line[i + 1]);
+		parse_rgb(&data->params.ceiling_color, &line[i + 1]);
 	else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
 	{
 		*is_map = 1;
@@ -96,7 +97,7 @@ int	ft_loop_parse(const char *filename, t_data *data)
 		else if (!ft_strncmp(&line[i], "1", 1) || !ft_strncmp(&line[i], " ", 1))
 		{
 			is_map = 1;
-			size_map++;
+			data->map_size_y++;
 		}
 		else if (is_map)
 			exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
@@ -115,7 +116,7 @@ void	ft_parse(const char *filename, t_data *data)
 {
 	int		size_filename;
 
-	ft_init_param(&data->params);
+	ft_init_param(data);
 	size_filename = ft_strlen(filename);
 	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
 		clean_exit(data, ft_error("parse.c", ERR_PARSER_EXTENSION));
