@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/14 16:29:20 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/14 17:26:10 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_line_handler(t_data *data, char *line, int *i)
 		*i += 1;
 	if (!ft_strncmp(&line[*i], "NO", 2))
 		data->params.no_path = ft_fill_data_info(&line[*i + 2]);
+	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2))
+		data->params.do_path = ft_fill_data_info(&line[*i + 2]);
 	else if (!ft_strncmp(&line[*i], "SO", 2))
 		data->params.so_path = ft_fill_data_info(&line[*i + 2]);
 	else if (!ft_strncmp(&line[*i], "WE", 2))
