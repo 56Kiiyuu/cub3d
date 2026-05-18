@@ -32,7 +32,8 @@ SRC =	main.c \
 		movement/player_rotation.c \
 		movement/valid_move.c \
 		free.c \
-		parsing/ft_line_handler.c
+		parsing/ft_line_handler.c \
+		error_handling/free_error.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
