@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/28 13:47:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 19:16:27 by gchalmel         ###   ########.fr       */
+/*   Created: 2026/05/18 18:37:29 by gchalmel          #+#    #+#             */
+/*   Updated: 2026/05/18 19:07:54 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
 
-void	init_mlx(t_data *data)
+void	ft_free_err(char **err)
 {
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		clean_exit(data, ft_error("mlx", ERR_MLX_START), NULL);
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	if (!data->win)
-		clean_exit(data, ft_error("mlx", ERR_MLX_WINDOW), NULL);
-	return ;
+	int	i;
+
+	i = 0;
+	while (i < 22)
+	{
+		free(err[i]);
+		i++;
+	}
+	free(err);
 }

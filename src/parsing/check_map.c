@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 18:14:26 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:12:50 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	check_map(t_data *data)
 			if (data->map[i][j] == '0')
 			{
 				if (!check_left(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
+					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 				else if (!check_right(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
+					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 				else if (!check_up(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
+					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 				else if (!check_down(data, j, i))
-					return (exit(ft_error("check_map.c", PARSING_WRONG_MAP)));
+					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 			}
 			j++;
 		}

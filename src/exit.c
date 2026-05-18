@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/13 14:56:52 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 19:11:12 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	clean_exit(t_data *data, int code)
+void	clean_exit(t_data *data, int code, char *line)
 {
 	if (!data)
 		exit(code);
+	if (line)
+		free(line);
 	if (data->tmp_line)
 		free(data->tmp_line);
 	if (data->fd > 0)
@@ -30,11 +32,12 @@ void	clean_exit(t_data *data, int code)
 	}
 	if (data->player)
 		free(data->player);
+	ft_error("exit.c", 99);
 	exit(code);
 }
 
 int	quit_cub3d(t_data *data)
 {
-	clean_exit(data, 0);
+	clean_exit(data, 0, NULL);
 	return (0);
 }

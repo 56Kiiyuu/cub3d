@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:46:54 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 17:52:46 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:17:30 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_xpm(t_data *data, t_img *tex, char *path)
 	tex->img = mlx_xpm_file_to_image(data->mlx, path,
 			&tex->width, &tex->height);
 	if (!tex->img)
-		clean_exit(data, error_msg("texture", "Failed to load XPM texture", 1));
+		clean_exit(data, error_msg("t", "Failed to load XPM texture", 1), NULL);
 	tex->addr = mlx_get_data_addr(tex->img, &tex->pixel_bits,
 			&tex->len_line, &tex->endian);
 }

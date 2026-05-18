@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 16:43:30 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 18:04:24 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:14:11 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	fill_data(t_data *data, int x, int y)
 {
 	if (data->player->direction != '\0')
-		clean_exit(data, ft_error("parse_spawn.c", ERR_PARSER_MANY_SPAWN));
+		clean_exit(data, ft_error("spawn.c", ERR_PARSER_MANY_SPAWN), NULL);
 	data->player->pos_x = (double)x + 0.5 ;
 	data->player->pos_y = (double)y + 0.5 ;
 	data->player->direction = data->map[y][x];
@@ -41,5 +41,5 @@ void	parse_spawn(t_data *data)
 		i++;
 	}
 	if (data->player->direction == '\0')
-		clean_exit(data, ft_error("parse_spawn.c", ERR_PARSER_NO_SPAWN));
+		clean_exit(data, ft_error("parse_spawn.c", ERR_PARSER_NO_SPAWN), NULL);
 }

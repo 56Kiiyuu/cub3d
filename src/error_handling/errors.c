@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 18:25:53 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:40:39 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	ft_error(char *from, int code)
 	{
 		err = malloc(sizeof(char *) * 22);
 		ft_fill_err_buff(err);
+	}
+	if (code == 99)
+	{
+		ft_free_err(err);
+		return (0);
 	}
 	return (error_msg(from, err[code], code));
 }

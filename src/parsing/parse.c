@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 18:13:29 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:14:33 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_loop_parse(const char *filename, t_data *data)
 
 	data->fd = open(filename, O_RDONLY);
 	if (data->fd < 0)
-		clean_exit(data, ft_error("parse.c", PARSING_NOT_OPEN_FILE));
+		clean_exit(data, ft_error("parse.c", PARSING_NOT_OPEN_FILE), NULL);
 	while (1)
 	{
 		line = get_next_line(data->fd);
@@ -66,12 +66,12 @@ void	ft_parse(const char *filename, t_data *data)
 	ft_init_param(data);
 	size_filename = ft_strlen(filename);
 	if (ft_strncmp(&filename[size_filename - 4], ".cub", 5))
-		clean_exit(data, ft_error("parse.c", ERR_PARSER_EXTENSION));
+		clean_exit(data, ft_error("parse.c", ERR_PARSER_EXTENSION), NULL);
 	data->map_size_y = 0;
 	ft_loop_parse(filename, data);
 	parse_map(data, data->map_size_y, filename);
 	parse_spawn(data);
 	check_map(data);
 	if (data->params.ceiling_color == -1 || data->params.floor_color == -1)
-		clean_exit(data, ft_error("parse.c", PARSING_NO_COLOR));
+		clean_exit(data, ft_error("parse.c", PARSING_NO_COLOR), NULL);
 }

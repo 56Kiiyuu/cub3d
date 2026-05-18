@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/18 18:14:11 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:13:18 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	normalize_map(t_data *data)
 		curr_len = ft_strlen(data->map[i]);
 		new_line = malloc(sizeof(char) * (max_w + 1));
 		if (!new_line)
-			clean_exit(data, ft_error("malloc", PARSING_NORMALIZE_MAP));
+			clean_exit(data, ft_error("malloc", PARSING_NORMALIZE_MAP), NULL);
 		ft_strlcpy(new_line, data->map[i], curr_len + 1);
 		while (curr_len < max_w)
 			new_line[curr_len++] = ' ';
