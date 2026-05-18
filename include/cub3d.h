@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/14 15:28:19 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 17:40:52 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_fileinfo
 	int		ceiling_color;
 }	t_fileinfo;
 
-
 typedef struct s_img
 {
 	void	*img;
@@ -98,18 +97,17 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	int		moveX;
-	int		moveY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		move_x;
+	int		move_y;
 	int		rotate;
 	char	direction;
 }	t_player;
-
 
 typedef struct s_data
 {
@@ -130,23 +128,23 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-	double			cameraX;		//coord X (-1 to 1) where ray for pov
-	double			rayDirX;		//direction X for ray
-	double			rayDirY;		//direction Y for ray
-	int				mapX;			//Pos X of ray in MAP
-	int				mapY;			//Pos Y of ray in MAP
-	double			sideDistX;		//distance X ray start to next case
-	double			sideDistY;		//distance Y ray start to next case
-	double			deltaDistX;		//distance X ray to cross next line vertical
-	double			deltaDistY;		//distance Y ray to cross next line horizontal
-	double			perpWallDist;	//used for fish-eye
-	int				stepX;			//direction X we step on the grid
-	int				stepY;			//direction Y we step on the grid
-	int				side;			//boolean (0 if hit vertical, 1 if hit horizontal)
-	int				lineHeight;		//height (pixels) of colon
-	int				drawStart;		//pixel colon(upper)
-	int				drawEnd;		//pixel colon(lower)
-	double			wallX;
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			wall_x;
 	double			tex_pos;
 	unsigned int	color;
 	int				hit_type;
