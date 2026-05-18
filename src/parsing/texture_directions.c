@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:20:24 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/14 15:31:16 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:24:41 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ char	*ft_fill_data_info(char *line)
 	str[i] = '\0';
 	if (ft_strncmp(&str[ft_strlen(str) - 4], ".xpm", 5))
 		exit(ft_error("parse.c", ERR_PARSER_TEXTURE_DIRECTION));
-
 	return (str);
 }
