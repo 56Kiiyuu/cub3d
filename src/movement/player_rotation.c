@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_rotation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:14:40 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:23:37 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:01:51 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	rotate_left_right(t_data *data, double rotate_speed)
 	double		tmp_x;
 
 	p = data->player;
-	tmp_x = p->dirX;
-	p->dirX = p->dirX * cos(rotate_speed) - p->dirY * sin(rotate_speed);
-	p->dirY = tmp_x * sin(rotate_speed) + p->dirY * cos(rotate_speed);
-	tmp_x = p->planeX;
-	p->planeX = p->planeX * cos(rotate_speed) - p->planeY * sin(rotate_speed);
-	p->planeY = tmp_x * sin(rotate_speed) + p->planeY * cos(rotate_speed);
+	tmp_x = p->dir_x;
+	p->dir_x = p->dir_x * cos(rotate_speed) - p->dir_y * sin(rotate_speed);
+	p->dir_y = tmp_x * sin(rotate_speed) + p->dir_y * cos(rotate_speed);
+	tmp_x = p->plane_x;
+	p->plane_x = p->plane_x * cos(rotate_speed) - p->plane_y
+		* sin(rotate_speed);
+	p->plane_y = tmp_x * sin(rotate_speed) + p->plane_y * cos(rotate_speed);
 	return (1);
 }
 

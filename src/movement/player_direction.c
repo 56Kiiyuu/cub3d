@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_direction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:09:22 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:23:33 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 17:56:33 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	init_player_north_south(t_player *player)
 {
 	if (player->direction == 'S')
 	{
-		player->dirX = 0;
-		player->dirY = 1;
-		player->planeX = -0.66;
-		player->planeY = 0;
+		player->dir_x = 0;
+		player->dir_y = 1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
 	}
 	else if (player->direction == 'N')
 	{
-		player->dirX = 0;
-		player->dirY = -1;
-		player->planeX = 0.66;
-		player->planeY = 0;
+		player->dir_x = 0;
+		player->dir_y = -1;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
 	}
 }
 
@@ -34,17 +34,17 @@ void	init_player_east_west(t_player *player)
 {
 	if (player->direction == 'W')
 	{
-		player->dirX = -1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = -0.66;
+		player->dir_x = -1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 	}
 	else if (player->direction == 'E')
 	{
-		player->dirX = 1;
-		player->dirY = 0;
-		player->planeX = 0;
-		player->planeY = 0.66;
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 	}
 }
 

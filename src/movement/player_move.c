@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 16:02:10 by kevlim            #+#    #+#             */
-/*   Updated: 2026/04/29 18:23:35 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:00:44 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 
 int	move_forward(t_data *data)
 {
-	double	newX;
-	double	newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->posX + data->player->dirX * MOVE_SPEED;
-	newY = data->player->posY + data->player->dirY * MOVE_SPEED;
-	return (validate_move(data, newX, newY));
+	new_x = data->player->pos_x + data->player->dir_x * MOVE_SPEED;
+	new_y = data->player->pos_y + data->player->dir_y * MOVE_SPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
 int	move_backward(t_data *data)
 {
-	double	newX;
-	double	newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->posX - data->player->dirX * MOVE_SPEED;
-	newY = data->player->posY - data->player->dirY * MOVE_SPEED;
-	return (validate_move(data, newX, newY));
+	new_x = data->player->pos_x - data->player->dir_x * MOVE_SPEED;
+	new_y = data->player->pos_y - data->player->dir_y * MOVE_SPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
 int	move_left(t_data *data)
 {
-	double	newX;
-	double	newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->posX + data->player->dirY * MOVE_SPEED;
-	newY = data->player->posY - data->player->dirX * MOVE_SPEED;
-	return (validate_move(data, newX, newY));
+	new_x = data->player->pos_x + data->player->dir_y * MOVE_SPEED;
+	new_y = data->player->pos_y - data->player->dir_x * MOVE_SPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
 int	move_right(t_data *data)
 {
-	double	newX;
-	double	newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->posX - data->player->dirY * MOVE_SPEED;
-	newY = data->player->posY + data->player->dirX * MOVE_SPEED;
-	return (validate_move(data, newX, newY));
+	new_x = data->player->pos_x - data->player->dir_y * MOVE_SPEED;
+	new_y = data->player->pos_y + data->player->dir_x * MOVE_SPEED;
+	return (validate_move(data, new_x, new_y));
 }
 
 int	move_player(t_data *data)
@@ -57,19 +57,14 @@ int	move_player(t_data *data)
 	int	moved;
 
 	moved = 0;
-	// FORWARD
-	if (data->player->moveY == 1)
+	if (data->player->move_y == 1)
 		moved += move_forward(data);
-	// BACKWARD
-	if (data->player->moveY == -1)
+	if (data->player->move_y == -1)
 		moved += move_backward(data);
-	// LEFT
-	if (data->player->moveX == -1)
+	if (data->player->move_x == -1)
 		moved += move_left(data);
-	// RIGHT
-	if (data->player->moveX == 1)
+	if (data->player->move_x == 1)
 		moved += move_right(data);
-	// Rotation
 	if (data->player->rotate != 0)
 		moved += rotate_player(data, data->player->rotate);
 	return (moved);
