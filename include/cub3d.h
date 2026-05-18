@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 19:11:42 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:30:56 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void	ft_line_handler(t_data *data, char *line, int *i);
 // Error
 int		ft_error(char *from, int code);
 void	ft_free_err(char **err);
+void	ft_check_null(t_data *data, char *str);
 
 // Free
 void	free_textures_path(t_data *data);
