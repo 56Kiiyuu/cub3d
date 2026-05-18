@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:15:04 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/07 18:03:51 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:21:43 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	render_bg(t_data *data)
 		while (x < WIN_WIDTH)
 		{
 			if (y < WIN_HEIGHT / 2)
-				mlx_pixel_put_custom(&data->img, x, y, data->params.ceiling_color);
+				mlx_pixel_put_custom(&data->img, x, y,
+					data->params.ceiling_color);
 			else
-				mlx_pixel_put_custom(&data->img, x, y, data->params.floor_color);
+				mlx_pixel_put_custom(&data->img, x, y,
+					data->params.floor_color);
 			x++;
 		}
 		y++;

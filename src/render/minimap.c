@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 13:31:35 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/13 14:40:10 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:15:23 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	draw_player_minimap(t_data *data)
 			mlx_pixel_put_custom(&data->img, pos[0] + j,
 				pos[1] + i, 0x00FF0000);
 	}
-	dir[0] = pos[0] + (data->player->dirX * 10);
-	dir[1] = pos[1] + (data->player->dirY * 10);
+	dir[0] = pos[0] + (data->player->dir_x * 10);
+	dir[1] = pos[1] + (data->player->dir_y * 10);
 	draw_line_minimap(data, pos, dir);
 }
 
@@ -111,8 +111,8 @@ void	draw_minimap(t_data *data)
 			screen[0] = (player_pos[0] + radius) * MM_CASE_SIZE + MM_OFFSET;
 			screen[1] = (player_pos[1] + radius) * MM_CASE_SIZE + MM_OFFSET;
 			draw_square(data, screen[0], screen[1], get_minimap_color(data,
-					(int)data->player->posX + player_pos[0],
-					(int)data->player->posY + player_pos[1]));
+					(int)data->player->pos_x + player_pos[0],
+					(int)data->player->pos_y + player_pos[1]));
 		}
 	}
 	draw_player_minimap(data);
