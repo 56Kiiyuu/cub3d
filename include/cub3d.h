@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 18:26:29 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:11:42 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int		handle_keypress(int keycode, t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 int		handle_mouse(int x, int y, t_data *data);
 
-void	clean_exit(t_data *data, int code);
+void	clean_exit(t_data *data, int code, char *line);
 int		quit_cub3d(t_data *data);
 
 int		error_msg(char *from, char *msg, int code);
@@ -177,15 +177,16 @@ int		error_msg(char *from, char *msg, int code);
 // Parsing
 void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
-char	*ft_fill_data_info(char *line);
+char	*ft_fill_data_info(t_data *data, char *line);
 void	parse_map(t_data *data, int size_map, const char *filename);
-void	parse_rgb(int *rgb, char *line);
+void	parse_rgb(t_data *data, int *rgb, char *line);
 void	parse_spawn(t_data *data);
 void	check_map(t_data *data);
 void	ft_line_handler(t_data *data, char *line, int *i);
 
 // Error
 int		ft_error(char *from, int code);
+void	ft_free_err(char **err);
 
 // Free
 void	free_textures_path(t_data *data);
