@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 18:13:10 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:31:39 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ vn[1] = sp (if one whe have possibly \n or a bad keyword in the map parse)
 */
 void	ft_line_handler(t_data *data, char *line, int *i)
 {
-	int	var_norminette[2];
+	static int	var_norminette[2] = {0, 0};
 
-	var_norminette[0] = 0;
-	var_norminette[1] = 0;
+	handler(data, line, i, var_norminette);
 }
