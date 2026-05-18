@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/14 16:32:52 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:14:11 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,11 @@ int	is_map_line(char *line)
 
 void	parse_map(t_data *data, int size_map, const char *filename)
 {
-	int		fd;
 	char	*line;
 
 	int (i) = 0;
 	int (j) = 0;
-	fd = open(filename, O_RDONLY);
+	int (fd) = open(filename, O_RDONLY);
 	data->map = malloc(sizeof(char *) * (size_map + 1));
 	line = get_next_line(fd);
 	while (line != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_spawn.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 16:43:30 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/13 13:35:08 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/18 18:04:24 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	fill_data(t_data *data, int x, int y)
 {
 	if (data->player->direction != '\0')
 		clean_exit(data, ft_error("parse_spawn.c", ERR_PARSER_MANY_SPAWN));
-	data->player->posX = (double)x + 0.5 ;
-	data->player->posY = (double)y + 0.5 ;
+	data->player->pos_x = (double)x + 0.5 ;
+	data->player->pos_y = (double)y + 0.5 ;
 	data->player->direction = data->map[y][x];
 	data->map[y][x] = '0';
 }

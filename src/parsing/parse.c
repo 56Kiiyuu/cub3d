@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/14 17:26:10 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:13:29 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,6 @@ int	ft_isspace(char c)
 		|| c == '\t' || c == '\v')
 		return (1);
 	return (0);
-}
-
-void	ft_line_handler(t_data *data, char *line, int *i)
-{
-	int (is_map) = 0;
-	int (sp) = 0;
-	while (line[*i] && ft_isspace(line[*i]))
-		*i += 1;
-	if (!ft_strncmp(&line[*i], "NO", 2))
-		data->params.no_path = ft_fill_data_info(&line[*i + 2]);
-	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2))
-		data->params.do_path = ft_fill_data_info(&line[*i + 2]);
-	else if (!ft_strncmp(&line[*i], "SO", 2))
-		data->params.so_path = ft_fill_data_info(&line[*i + 2]);
-	else if (!ft_strncmp(&line[*i], "WE", 2))
-		data->params.we_path = ft_fill_data_info(&line[*i + 2]);
-	else if (!ft_strncmp(&line[*i], "EA", 2))
-		data->params.ea_path = ft_fill_data_info(&line[*i + 2]);
-	else if (!ft_strncmp(&line[*i], "F", 1) && !is_map)
-		parse_rgb(&data->params.floor_color, &line[*i + 1]);
-	else if (!ft_strncmp(&line[*i], "C", 1) && !is_map)
-		parse_rgb(&data->params.ceiling_color, &line[*i + 1]);
-	else if (!ft_strncmp(&line[*i], "1", 1) || !ft_strncmp(&line[*i], " ", 1))
-	{
-		is_map = 1;
-		data->map_size_y++;
-	}
-	else if (is_map && !sp)
-		sp = 1;
-	else if ((!(line[*i] == '\n') && !(line[*i] == '\0')) || (sp && is_map))
-		exit(ft_error("parse.c", ERR_PARSER_BAD_KEYWORD));
 }
 
 /*
