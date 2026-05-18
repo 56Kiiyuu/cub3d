@@ -6,12 +6,13 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/18 19:13:18 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:37:42 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+// a recheck
 int	get_max_width(char **map, int size_y)
 {
 	int	max;
@@ -19,6 +20,8 @@ int	get_max_width(char **map, int size_y)
 
 	max = 0;
 	i = 0;
+	if (!map || !*map)
+		clean_exit(NULL, ft_error("check null", MALLOC_ERR), NULL);
 	while (i < size_y)
 	{
 		if ((int)ft_strlen(map[i]) > max)
@@ -53,26 +56,6 @@ void	normalize_map(t_data *data)
 	}
 }
 
-int	is_map_line(char *line)
-{
-	int	i;
-	int	has_content;
-
-	i = 0;
-	has_content = 0;
-	if (!line || line[0] == '\0' || line[0] == '\n')
-		return (0);
-	while (line[i] && line[i] != '\n')
-	{
-		if (!ft_strchr(" 01NSEWDO", line[i]))
-			return (0);
-		if (ft_strchr("01NSEWDO", line[i]))
-			has_content = 1;
-		i++;
-	}
-	return (has_content);
-}
-
 void	parse_map(t_data *data, int size_map, const char *filename)
 {
 	char	*line;
@@ -89,6 +72,7 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 		if (!ft_strncmp(&line[j], "1", 1))
 		{
 			data->map[i] = ft_strdup(line);
+			ft_check_null(data, data->map[i]);
 			if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
 				data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
 			i++;

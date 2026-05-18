@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 14:20:24 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 19:15:37 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 19:31:19 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_fill_data_info(t_data *data, char *line)
 	if ((!(line[i] == '.') && !(line[i + 1] == '/')) && (!(line[i] == '/')))
 		clean_exit(data, ft_error("play_dir", ERR_PARSER_NOT_GOOD_PATH), NULL);
 	str = ft_strdup(&line[i]);
+	ft_check_null(data, str);
 	i = 0;
 	while (str[i] != '\0' && ft_isprint(str[i]))
 	{
