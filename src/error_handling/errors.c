@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 17:51:42 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/18 18:25:53 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_fill_err_buff(char **err)
 
 int	ft_error(char *from, int code)
 {
-	char	**err;
+	static char	**err = NULL;
 
 	if (err == NULL)
 	{
