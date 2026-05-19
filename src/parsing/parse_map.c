@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/18 19:37:42 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/19 11:52:31 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@ void	normalize_map(t_data *data)
 	}
 }
 
+void	ft_add_map_line(t_data *data, char *line, int i)
+{
+	int	len;
+
+	data->map[i] = ft_strdup(line);
+	ft_check_null(data, data->map[i]);
+	len = ft_strlen(data->map[i]);
+	if (len > 0 && data->map[i][len - 1] == '\n')
+		data->map[i][len - 1] = '\0';
+}
+
 void	parse_map(t_data *data, int size_map, const char *filename)
 {
 	char	*line;
@@ -63,22 +74,20 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 	int (i) = 0;
 	int (j) = 0;
 	int (fd) = open(filename, O_RDONLY);
+	data->fd = fd;
 	data->map = malloc(sizeof(char *) * (size_map + 1));
-	line = get_next_line(fd);
-	while (line != NULL)
+	while (1)
 	{
-		while (line[j] != '\0' && ft_isspace(line[j]))
-			j++;
-		if (!ft_strncmp(&line[j], "1", 1))
-		{
-			data->map[i] = ft_strdup(line);
-			ft_check_null(data, data->map[i]);
-			if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
-				data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
-			i++;
-		}
-		free(line);
 		line = get_next_line(fd);
+		if (!line)
+			break ;
+		data->tmp_line = line;
+		while (line[j] && ft_isspace(line[j]))
+			j++;
+		if (line[j] == '1')
+			ft_add_map_line(data, line, i++);
+		free(line);
+		data->tmp_line = NULL;
 		j = 0;
 	}
 	data->map[i] = NULL;

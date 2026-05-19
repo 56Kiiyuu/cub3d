@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 19:30:56 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/19 11:49:06 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ void	init_textures(t_data *data);
 
 int		render(t_data *data);
 void	mlx_pixel_put_custom(t_img *img, int x, int y, int color);
+void	setup_dda(t_ray *ray, t_player *player);
+void	process_dda(t_ray *ray, t_data *data);
 void	raycasting(t_data *data);
 void	draw_minimap(t_data *data);
 void	draw_textured_line(t_data *data, t_ray *ray, int x);

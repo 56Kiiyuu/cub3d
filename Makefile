@@ -26,6 +26,7 @@ SRC =	main.c \
 		render/raycasting.c \
 		render/textures.c \
 		render/minimap.c \
+		render/dda.c \
 		movement/handler_input.c \
 		movement/player_direction.c \
 		movement/player_move.c \

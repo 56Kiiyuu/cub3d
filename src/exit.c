@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 19:11:12 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/19 11:58:51 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	clean_exit(t_data *data, int code, char *line)
 		free(data->tmp_line);
 	if (data->fd > 0)
 		free_gnl_stash(data->fd);
+	if (data->mlx && data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
 	free_parse_data(data);
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
@@ -32,7 +34,6 @@ void	clean_exit(t_data *data, int code, char *line)
 	}
 	if (data->player)
 		free(data->player);
-	ft_error("exit.c", 99);
 	exit(code);
 }
 
