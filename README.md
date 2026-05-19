@@ -1,6 +1,5 @@
-# Cub3D
 *This project has been created as part of the 42 curriculum by kevlim, gchalmel.*
-
+# Cub3D
 ## Description
 **Cub3D** is a 3D graphical game engine inspired by the world-famous 1992 classic *Wolfenstein 3D*. Built entirely in C using the **miniLibX** graphical library, the goal of this project is to explore the concepts of Raycasting. 
 
