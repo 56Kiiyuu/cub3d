@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/19 11:49:06 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/20 16:30:39 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,9 +179,9 @@ int		error_msg(char *from, char *msg, int code);
 // Parsing
 void	ft_parse(const char *filename, t_data *data);
 int		ft_isspace(char c);
-char	*ft_fill_data_info(t_data *data, char *line);
+char	*ft_fill_data_info(t_data *data, char *line, char *full);
 void	parse_map(t_data *data, int size_map, const char *filename);
-void	parse_rgb(t_data *data, int *rgb, char *line);
+void	parse_rgb(t_data *data, int *rgb, char *line, char *full);
 void	parse_spawn(t_data *data);
 void	check_map(t_data *data);
 void	ft_line_handler(t_data *data, char *line, int *i);
