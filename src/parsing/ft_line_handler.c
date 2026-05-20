@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/20 16:30:41 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:26:05 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 #include "../../libft/libft.h"
 #include <stdio.h>
 
-static void	handler(t_data *data, char *line, int *i, int *vn)
+void	skip_space(char *line, int *i)
 {
 	while (line[*i] && ft_isspace(line[*i]))
 		*i += 1;
+}
+
+static void	handler(t_data *data, char *line, int *i, int *vn)
+{
+	skip_space(line, i);
 	if (!ft_strncmp(&line[*i], "NO", 2))
 		data->params.no_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2))
@@ -32,7 +37,8 @@ static void	handler(t_data *data, char *line, int *i, int *vn)
 		parse_rgb(data, &data->params.floor_color, &line[*i + 1], line);
 	else if (!ft_strncmp(&line[*i], "C", 1) && !vn[0])
 		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1], line);
-	else if (!ft_strncmp(&line[*i], "1", 1) || !ft_strncmp(&line[*i], " ", 1))
+	else if ((!ft_strncmp(&line[*i], "1", 1)
+			|| !ft_strncmp(&line[*i], " ", 1)) && !vn[1])
 	{
 		vn[0] = 1;
 		data->map_size_y++;

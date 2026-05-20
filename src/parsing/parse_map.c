@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/19 11:52:31 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/20 16:36:46 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	parse_map(t_data *data, int size_map, const char *filename)
 		j = 0;
 	}
 	data->map[i] = NULL;
-	normalize_map(data);
+	// normalize_map(data);
 	close(fd);
 }

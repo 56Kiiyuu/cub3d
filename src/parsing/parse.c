@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 19:14:33 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:51:31 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,7 @@ void	ft_parse(const char *filename, t_data *data)
 	check_map(data);
 	if (data->params.ceiling_color == -1 || data->params.floor_color == -1)
 		clean_exit(data, ft_error("parse.c", PARSING_NO_COLOR), NULL);
+	if (data->params.no_path == NULL || data->params.so_path == NULL
+		|| data->params.we_path == NULL || data->params.ea_path == NULL)
+		clean_exit(data, ft_error("parse.c", NO_TEXTURE), NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/20 16:30:39 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:49:52 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define PARSING_NORMALIZE_MAP 19
 # define PARSING_NOT_OPEN_FILE 20
 # define MALLOC_ERR 21
+# define NO_TEXTURE 22
 
 typedef struct s_rgb
 {

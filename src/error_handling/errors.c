@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 19:25:58 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:50:31 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_fill_err_buff(char **err)
 	err[19] = ft_strdup("Failed to normalize map line");
 	err[20] = ft_strdup("Could not open file");
 	err[21] = ft_strdup("Malloc failed");
+	err[22] = ft_strdup("No texture found");
 }
 
 int	ft_error(char *from, int code)
@@ -44,7 +45,7 @@ int	ft_error(char *from, int code)
 
 	if (err == NULL)
 	{
-		err = malloc(sizeof(char *) * 22);
+		err = malloc(sizeof(char *) * 23);
 		if (err == NULL)
 			exit(0);
 		ft_fill_err_buff(err);
