@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 19:13:08 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 16:30:41 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ static void	handler(t_data *data, char *line, int *i, int *vn)
 	while (line[*i] && ft_isspace(line[*i]))
 		*i += 1;
 	if (!ft_strncmp(&line[*i], "NO", 2))
-		data->params.no_path = ft_fill_data_info(data, &line[*i + 2]);
+		data->params.no_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2))
-		data->params.do_path = ft_fill_data_info(data, &line[*i + 2]);
+		data->params.do_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (!ft_strncmp(&line[*i], "SO", 2))
-		data->params.so_path = ft_fill_data_info(data, &line[*i + 2]);
+		data->params.so_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (!ft_strncmp(&line[*i], "WE", 2))
-		data->params.we_path = ft_fill_data_info(data, &line[*i + 2]);
+		data->params.we_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (!ft_strncmp(&line[*i], "EA", 2))
-		data->params.ea_path = ft_fill_data_info(data, &line[*i + 2]);
+		data->params.ea_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else if (!ft_strncmp(&line[*i], "F", 1) && !vn[0])
-		parse_rgb(data, &data->params.floor_color, &line[*i + 1]);
+		parse_rgb(data, &data->params.floor_color, &line[*i + 1], line);
 	else if (!ft_strncmp(&line[*i], "C", 1) && !vn[0])
-		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1]);
+		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1], line);
 	else if (!ft_strncmp(&line[*i], "1", 1) || !ft_strncmp(&line[*i], " ", 1))
 	{
 		vn[0] = 1;

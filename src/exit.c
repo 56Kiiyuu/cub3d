@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/19 11:58:51 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/20 16:15:51 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	clean_exit(t_data *data, int code, char *line)
 	}
 	if (data->player)
 		free(data->player);
+	ft_error("NE PAS SUPR CA SERT A FREE LA VAR ERR", 99);
 	exit(code);
 }
 
