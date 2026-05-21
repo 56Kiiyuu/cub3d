@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/20 16:15:51 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/20 17:35:10 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	clean_exit(t_data *data, int code, char *line)
 		free(data->tmp_line);
 	if (data->fd > 0)
 		free_gnl_stash(data->fd);
-	if (data->mlx && data->img.img)
-		mlx_destroy_image(data->mlx, data->img.img);
 	free_parse_data(data);
 	if (data->win && data->mlx)
 		mlx_destroy_window(data->mlx, data->win);
