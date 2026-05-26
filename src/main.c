@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:01:42 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/20 17:33:52 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/26 17:35:11 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	setup_mlx_hooks(t_data *data)
 	mlx_hook(data->win, 3, 1L << 1, (void *)handle_keyrelease, data);
 	if (BONUS)
 	{
-		mlx_mouse_hide(data->mlx, data->win);
+		// mlx_mouse_hide(data->mlx, data->win);
 		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 		mlx_hook(data->win, 6, 1L << 6, (void *)handle_mouse, data);
 	}
