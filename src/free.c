@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 13:21:12 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/13 14:58:17 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/26 17:00:36 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,27 @@ void	free_textures(t_data *data)
 {
 	int	i;
 
+	if (!data->mlx)
+		return ;
 	i = 0;
 	while (i < 5)
 	{
 		if (data->texture[i].img)
+		{
 			mlx_destroy_image(data->mlx, data->texture[i].img);
+			data->texture[i].img = NULL;
+		}
 		i++;
 	}
 	if (data->img.img)
+	{
 		mlx_destroy_image(data->mlx, data->img.img);
+		data->img.img = NULL;
+	}
 }
 
 void	free_parse_data(t_data *data)
 {
-	free_textures(data);
 	free_map(data);
 	free_textures_path(data);
 }

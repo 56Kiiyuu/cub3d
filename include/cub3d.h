@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/20 16:49:52 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:55:29 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_data
 	t_img		door_tex;
 	int			fd;
 	char		*tmp_line;
+	int			is_map;
+	int			map_end;
 }	t_data;
 
 typedef struct s_ray
@@ -186,6 +188,8 @@ void	parse_rgb(t_data *data, int *rgb, char *line, char *full);
 void	parse_spawn(t_data *data);
 void	check_map(t_data *data);
 void	ft_line_handler(t_data *data, char *line, int *i);
+void	normalize_map(t_data *data);
+void	ft_add_map_line(t_data *data, char *line, int i);
 
 // Error
 int		ft_error(char *from, int code);

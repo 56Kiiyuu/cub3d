@@ -3,94 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/20 16:36:46 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/26 16:59:25 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// a recheck
-int	get_max_width(char **map, int size_y)
+void	init_parse_map(t_data *data, int size_map, const char *filename)
 {
-	int	max;
-	int	i;
-
-	max = 0;
-	i = 0;
-	if (!map || !*map)
-		clean_exit(NULL, ft_error("check null", MALLOC_ERR), NULL);
-	while (i < size_y)
-	{
-		if ((int)ft_strlen(map[i]) > max)
-			max = ft_strlen(map[i]);
-		i++;
-	}
-	return (max);
+	data->fd = open(filename, O_RDONLY);
+	if (data->fd < 0)
+		clean_exit(data, ft_error("parse_map.c", PARSING_NOT_OPEN_FILE), NULL);
+	data->map = malloc(sizeof(char *) * (size_map + 1));
+	if (!data->map)
+		clean_exit(data, ft_error("malloc", MALLOC_ERR), NULL);
+	data->is_map = 0;
+	data->map_end = 0;
 }
 
-void	normalize_map(t_data *data)
+void	process_map_line(t_data *data, char *line, int j, int *i)
 {
-	int		i;
-	int		max_w;
-	char	*new_line;
-	int		curr_len;
-
-	i = 0;
-	max_w = get_max_width(data->map, data->map_size_y);
-	while (i < data->map_size_y)
+	if (!data->is_map && (line[j] == '1' || line[j] == '0' || line[j] == ' '))
+		data->is_map = 1;
+	if (data->is_map && !data->map_end)
 	{
-		curr_len = ft_strlen(data->map[i]);
-		new_line = malloc(sizeof(char) * (max_w + 1));
-		if (!new_line)
-			clean_exit(data, ft_error("malloc", PARSING_NORMALIZE_MAP), NULL);
-		ft_strlcpy(new_line, data->map[i], curr_len + 1);
-		while (curr_len < max_w)
-			new_line[curr_len++] = ' ';
-		new_line[max_w] = '\0';
-		free(data->map[i]);
-		data->map[i] = new_line;
-		i++;
+		if (line[j] == '1' || line[j] == '0' || ft_strchr("NSEWDO ", line[j]))
+			ft_add_map_line(data, line, (*i)++);
 	}
-}
-
-void	ft_add_map_line(t_data *data, char *line, int i)
-{
-	int	len;
-
-	data->map[i] = ft_strdup(line);
-	ft_check_null(data, data->map[i]);
-	len = ft_strlen(data->map[i]);
-	if (len > 0 && data->map[i][len - 1] == '\n')
-		data->map[i][len - 1] = '\0';
+	else if (data->is_map && (line[j] == '\n' || line[j] == '\0'))
+		data->map_end = 1;
 }
 
 void	parse_map(t_data *data, int size_map, const char *filename)
 {
 	char	*line;
+	int		j;
+	int		i;
 
-	int (i) = 0;
-	int (j) = 0;
-	int (fd) = open(filename, O_RDONLY);
-	data->fd = fd;
-	data->map = malloc(sizeof(char *) * (size_map + 1));
+	i = 0;
+	init_parse_map(data, size_map, filename);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 		if (!line)
 			break ;
 		data->tmp_line = line;
+		j = 0;
 		while (line[j] && ft_isspace(line[j]))
 			j++;
-		if (line[j] == '1')
-			ft_add_map_line(data, line, i++);
+		if (i < size_map)
+			process_map_line(data, line, j, &i);
 		free(line);
 		data->tmp_line = NULL;
-		j = 0;
 	}
 	data->map[i] = NULL;
-	// normalize_map(data);
-	close(fd);
+	data->map_size_y = i;
+	normalize_map(data);
+	close(data->fd);
+	data->fd = -1;
 }

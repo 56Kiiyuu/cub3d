@@ -18,6 +18,7 @@ SRC =	main.c \
 		init/init_textures.c \
 		parsing/parse.c \
 		parsing/texture_directions.c \
+		parsing/parse_map_utils.c \
 		parsing/parse_map.c \
 		parsing/parse_rgb.c \
 		parsing/parse_spawn.c \
