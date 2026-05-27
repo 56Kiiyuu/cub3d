@@ -36,7 +36,8 @@ SRC =	main.c \
 		free.c \
 		parsing/ft_line_handler.c \
 		error_handling/free_error.c \
-		error_handling/check_null_str.c
+		error_handling/check_null_str.c \
+		error_handling/err_var.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
