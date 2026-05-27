@@ -13,7 +13,7 @@
 #include "cub3d.h"
 
 // a recheck
-int	get_max_width(char **map, int size_y)
+int	get_max_width(t_data *data, char **map, int size_y)
 {
 	int	max;
 	int	i;
@@ -21,7 +21,7 @@ int	get_max_width(char **map, int size_y)
 	max = 0;
 	i = 0;
 	if (!map || !*map)
-		clean_exit(NULL, ft_error("check null", MALLOC_ERR), NULL);
+		clean_exit(data, ft_error("check null", MALLOC_ERR), NULL);
 	while (i < size_y)
 	{
 		if ((int)ft_strlen(map[i]) > max)
@@ -39,7 +39,7 @@ void	normalize_map(t_data *data)
 	int		curr_len;
 
 	i = 0;
-	max_w = get_max_width(data->map, data->map_size_y);
+	max_w = get_max_width(data, data->map, data->map_size_y);
 	while (i < data->map_size_y)
 	{
 		curr_len = ft_strlen(data->map[i]);
