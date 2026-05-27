@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:54:24 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/26 16:42:47 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/27 19:17:34 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	clean_exit(t_data *data, int code, char *line)
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
 	}
-	if (code != 0)
-		ft_error("NE PAS SUPR CA SERT A FREE LA VAR ERR", 99);
 	exit(code);
 }
 

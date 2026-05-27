@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:50:00 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/27 19:16:05 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:17:03 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ int	ft_error(char *from, int code)
 	char	**err;
 
 	err = get_err();
-	if (code == 99)
-	{
-		ft_free_err(err);
-		return (0);
-	}
 	return (error_msg(from, err[code], code));
 }
 
