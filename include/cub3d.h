@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/26 16:55:29 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/27 18:29:24 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void	ft_add_map_line(t_data *data, char *line, int i);
 int		ft_error(char *from, int code);
 void	ft_free_err(char **err);
 void	ft_check_null(t_data *data, char *str);
+char	***get_err(void);
 
 // Free
 void	free_textures_path(t_data *data);
