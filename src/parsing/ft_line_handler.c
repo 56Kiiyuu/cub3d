@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/26 17:06:49 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/27 19:44:28 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ft_line_handler(t_data *data, char *line, int *i)
 		data->is_map = 1;
 		data->map_size_y++;
 	}
-	else if (data->is_map && !data->map_end)
+	else if ((data->is_map && !data->map_end)
+		&& (line[*i] != '\n') && (line[*i] != '\0'))
 		data->map_end = 1;
 	else if ((!(line[*i] == '\n') && !(line[*i] == '\0'))
 		|| (data->map_end && data->is_map))
@@ -60,7 +61,7 @@ void	ft_line_handler(t_data *data, char *line, int *i)
 }
 /*
 vn[0] = is_map (if one we are in the map)
-vn[1] = sp / data->map_end (if one whe have possibly \n 
+vn[1] = sp / data->map_end (if one whe have possibly \n
 or a bad keyword in the map parse)
 
 void	ft_line_handler(t_data *data, char *line, int *i)
