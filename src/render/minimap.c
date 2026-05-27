@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 13:31:35 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/27 18:07:46 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/27 18:37:33 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	draw_line_minimap(t_data *data, int start[2], int end[2])
 
 int	get_minimap_color(t_data *data, int x, int y)
 {
-	if (y < 0 || y >= data->map_size_y || x < 0 || x >= (int)ft_strlen(data->map[y])
+	if (y < 0 || y >= data->map_size_y || x < 0
+		|| x >= (int)ft_strlen(data->map[y])
 		|| !data->map[y][x] || data->map[y][x] == ' ')
 		return (0x000000);
 	if (data->map[y][x] == '1')
