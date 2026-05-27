@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 18:25:31 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/27 18:28:42 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:41:45 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	init_err(t_data *data)
 	*err = malloc(sizeof(char *) * 23);
 	if (*err == NULL)
 		clean_exit(data, MALLOC_ERR, NULL);
-	ft_fill_err_buff(err);
+	ft_fill_err_buff(*err);
 	return ;
 }
