@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 18:25:31 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/27 19:09:47 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:32:39 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**get_err(void)
 	static char	*err[23] = {
 		"Pas assez d'argument: ./cub3d <filename.cub>",
 		"L'extension du fichier n'est pas .cub",
-		"Not start MLX"
+		"Not start MLX",
 		"Not create window",
 		"Path doit commencer par ./ ou /",
 		"Texture direction incorrect Ex: NO <PATH>.xmp",
