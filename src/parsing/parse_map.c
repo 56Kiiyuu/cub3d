@@ -3,65 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/26 16:59:25 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/27 17:18:29 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_parse_map(t_data *data, int size_map, const char *filename)
+int	get_max_width(char **map, int size_y)
 {
-	data->fd = open(filename, O_RDONLY);
-	if (data->fd < 0)
-		clean_exit(data, ft_error("parse_map.c", PARSING_NOT_OPEN_FILE), NULL);
-	data->map = malloc(sizeof(char *) * (size_map + 1));
-	if (!data->map)
-		clean_exit(data, ft_error("malloc", MALLOC_ERR), NULL);
-	data->is_map = 0;
-	data->map_end = 0;
+	int	max;
+	int	i;
+
+	max = 0;
+	i = 0;
+	if (!map || !*map)
+		clean_exit(NULL, ft_error("check null", MALLOC_ERR), NULL);
+	while (i < size_y)
+	{
+		if ((int)ft_strlen(map[i]) > max)
+			max = ft_strlen(map[i]);
+		i++;
+	}
+	return (max);
 }
 
-void	process_map_line(t_data *data, char *line, int j, int *i)
+void	ft_add_map_line(t_data *data, char *line, int i)
 {
-	if (!data->is_map && (line[j] == '1' || line[j] == '0' || line[j] == ' '))
-		data->is_map = 1;
-	if (data->is_map && !data->map_end)
-	{
-		if (line[j] == '1' || line[j] == '0' || ft_strchr("NSEWDO ", line[j]))
-			ft_add_map_line(data, line, (*i)++);
-	}
-	else if (data->is_map && (line[j] == '\n' || line[j] == '\0'))
-		data->map_end = 1;
+	int	len;
+
+	data->map[i] = ft_strdup(line);
+	ft_check_null(data, data->map[i]);
+	len = ft_strlen(data->map[i]);
+	if (len > 0 && data->map[i][len - 1] == '\n')
+		data->map[i][len - 1] = '\0';
 }
 
 void	parse_map(t_data *data, int size_map, const char *filename)
 {
 	char	*line;
-	int		j;
-	int		i;
 
-	i = 0;
-	init_parse_map(data, size_map, filename);
+	int (i) = 0;
+	int (j) = 0;
+	int (fd) = open(filename, O_RDONLY);
+	data->fd = fd;
+	data->map = malloc(sizeof(char *) * (size_map + 1));
 	while (1)
 	{
-		line = get_next_line(data->fd);
+		line = get_next_line(fd);
 		if (!line)
 			break ;
 		data->tmp_line = line;
-		j = 0;
 		while (line[j] && ft_isspace(line[j]))
 			j++;
-		if (i < size_map)
-			process_map_line(data, line, j, &i);
+		if (line[j] == '1')
+			ft_add_map_line(data, line, i++);
 		free(line);
 		data->tmp_line = NULL;
+		j = 0;
 	}
 	data->map[i] = NULL;
-	data->map_size_y = i;
-	normalize_map(data);
-	close(data->fd);
-	data->fd = -1;
+	close(fd);
 }

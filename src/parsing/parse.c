@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/26 16:44:33 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/20 16:51:31 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	ft_parse(const char *filename, t_data *data)
 		clean_exit(data, ft_error("parse.c", ERR_PARSER_EXTENSION), NULL);
 	data->map_size_y = 0;
 	ft_loop_parse(filename, data);
-	data->is_map = 0;
-	data->map_end = 0;
 	parse_map(data, data->map_size_y, filename);
 	parse_spawn(data);
 	check_map(data);
