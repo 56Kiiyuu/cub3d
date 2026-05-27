@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:50:34 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 18:22:38 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/27 17:16:07 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	get_texture_coords(t_data *data, t_ray *ray, int *tex_x, int tex_id)
 			* ray->ray_dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 	*tex_x = (int)(ray->wall_x * (double)data->texture[tex_id].width);
-	if (ray->side == 0 && ray->ray_dir_x > 0)
+	if (ray->side == 0 && ray->ray_dir_x < 0)
 		*tex_x = data->texture[tex_id].width - *tex_x - 1;
-	if (ray->side == 1 && ray->ray_dir_y < 0)
+	if (ray->side == 1 && ray->ray_dir_y > 0)
 		*tex_x = data->texture[tex_id].width - *tex_x - 1;
 }
 
