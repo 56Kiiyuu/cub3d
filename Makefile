@@ -35,7 +35,6 @@ SRC =	main.c \
 		movement/valid_move.c \
 		free.c \
 		parsing/ft_line_handler.c \
-		error_handling/free_error.c \
 		error_handling/check_null_str.c \
 		error_handling/err_var.c
 
