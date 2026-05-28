@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/27 19:44:28 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/28 16:00:55 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,27 @@ int	handle_textures(t_data *data, char *line, int *i)
 void	ft_line_handler(t_data *data, char *line, int *i)
 {
 	skip_space(line, i);
+	if (line[*i] == '\n' || line[*i] == '\0')
+	{
+		if (data->is_map)
+			data->map_end = 1;
+		return ;
+	}
 	if (handle_textures(data, line, i))
 		return ;
 	else if (!ft_strncmp(&line[*i], "F", 1) && !data->is_map)
 		parse_rgb(data, &data->params.floor_color, &line[*i + 1], line);
 	else if (!ft_strncmp(&line[*i], "C", 1) && !data->is_map)
 		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1], line);
-	else if ((!ft_strncmp(&line[*i], "1", 1)
-			|| !ft_strncmp(&line[*i], " ", 1)) && !data->map_end)
+	else if (line[*i] == '1' || line[*i] == '0'
+		|| ft_strchr("NSEWDO", line[*i]))
 	{
+		if (data->map_end)
+			clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_KEYWORD), line);
 		data->is_map = 1;
 		data->map_size_y++;
 	}
-	else if ((data->is_map && !data->map_end)
-		&& (line[*i] != '\n') && (line[*i] != '\0'))
-		data->map_end = 1;
-	else if ((!(line[*i] == '\n') && !(line[*i] == '\0'))
-		|| (data->map_end && data->is_map))
+	else
 		clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_KEYWORD), line);
 }
 /*
