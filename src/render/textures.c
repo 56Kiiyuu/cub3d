@@ -6,13 +6,12 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 15:50:34 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/27 17:16:07 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/05/31 12:10:32 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**/
 int	get_texture_index(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -45,6 +44,15 @@ void	get_texture_coords(t_data *data, t_ray *ray, int *tex_x, int tex_id)
 		*tex_x = data->texture[tex_id].width - *tex_x - 1;
 }
 
+void	texture_data(t_data *data, t_ray *ray, int *tex_x, int *tex_id)
+{
+	if (BONUS && ray->hit_type == 2)
+		*tex_id = 4;
+	else
+		*tex_id = get_texture_index(ray);
+	get_texture_coords(data, ray, tex_x, *tex_id);
+}
+
 void	draw_textured_line(t_data *data, t_ray *ray, int x)
 {
 	int		tex_id;
@@ -53,18 +61,18 @@ void	draw_textured_line(t_data *data, t_ray *ray, int x)
 	int		y;
 	double	step;
 
-	if (BONUS && ray->hit_type == 2)
-		tex_id = 4;
-	else
-		tex_id = get_texture_index(ray);
-	get_texture_coords(data, ray, &tex_x, tex_id);
+	texture_data(data, ray, &tex_x, &tex_id);
 	step = 1.0 * data->texture[tex_id].height / ray->line_height;
 	ray->tex_pos = (ray->draw_start - WIN_HEIGHT / 2
 			+ ray->line_height / 2) * step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		tex_y = (int)ray->tex_pos & (data->texture[tex_id].height - 1);
+		tex_y = (int)ray->tex_pos;
+		if (tex_y >= data->texture[tex_id].height)
+			tex_y = data->texture[tex_id].height - 1;
+		else if (tex_y < 0)
+			tex_y = 0;
 		ray->tex_pos += step;
 		ray->color = *(unsigned int *)(data->texture[tex_id].addr
 				+ (tex_y * data->texture[tex_id].len_line

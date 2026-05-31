@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 18:02:12 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/18 17:55:15 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/31 12:15:17 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	handle_keyrelease(int keycode, t_data *data)
 		data->player->rotate = 0;
 	if (keycode == 65363)
 		data->player->rotate = 0;
-	if (BONUS && keycode == 'e')
-		toggle_door(data);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 13:31:35 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/27 18:37:33 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/05/31 12:18:49 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int	get_minimap_color(t_data *data, int x, int y)
 	if (data->map[y][x] == '1')
 		return (0x666666);
 	if (data->map[y][x] == 'D')
-		return (0x2B00FF);
+		return (0xFF0000);
+	if (data->map[y][x] == 'O')
+		return (0x00FF00);
 	return (0x222222);
 }
 
