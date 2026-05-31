@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:04:14 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/26 16:44:33 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/06/01 00:33:31 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ void	ft_parse(const char *filename, t_data *data)
 	if (data->params.no_path == NULL || data->params.so_path == NULL
 		|| data->params.we_path == NULL || data->params.ea_path == NULL)
 		clean_exit(data, ft_error("parse.c", NO_TEXTURE), NULL);
+	if ((data->params.ceiling_color > 255) || (data->params.floor_color > 255))
+		clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_NUMBER_RGB), NULL);
 }
