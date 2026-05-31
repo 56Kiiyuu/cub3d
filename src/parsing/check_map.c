@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/18 19:12:50 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/06/01 00:30:28 by gabch            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	check_left(t_data *data, int x, int y)
 	{
 		if (data->map[y][x] == '1')
 			return (1);
+		if (data->map[y][x] == ' ')
+			return (0);
 		x--;
 	}
 	return (0);
@@ -31,6 +33,8 @@ int	check_right(t_data *data, int x, int y)
 	{
 		if (data->map[y][x] == '1')
 			return (1);
+		if (data->map[y][x] == ' ')
+			return (0);
 		x++;
 	}
 	return (0);
@@ -42,6 +46,8 @@ int	check_up(t_data *data, int x, int y)
 	{
 		if (data->map[y][x] == '1')
 			return (1);
+		if (data->map[y][x] == ' ')
+			return (0);
 		y--;
 	}
 	return (0);
@@ -53,6 +59,8 @@ int	check_down(t_data *data, int x, int y)
 	{
 		if (data->map[y][x] == '1')
 			return (1);
+		if (data->map[y][x] == ' ')
+			return (0);
 		y++;
 	}
 	return (0);
