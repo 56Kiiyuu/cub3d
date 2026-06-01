@@ -33,7 +33,6 @@ make bonus
 ### Documentation & Tutorials
 
 * [Tutorial - Raycasting](https://www.google.com/search?q=https://lodev.org/cgtutor/raycast.html): main reference guide for understanding DDA and raycasting mathematics.
-* [Permadi's Raycasting Tutorial](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/): Fundamental breakdown of pseudo-3D matrices and field-of-view geometry.
 * [MiniLibX Manual](https://github.com/42Paris/minilibx-linux): Official documentation for hooks, loops, and image manipulation.
 
 ### Use of AI
