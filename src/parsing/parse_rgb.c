@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:44:13 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/01 00:30:56 by gabch            ###   ########.fr       */
+/*   Updated: 2026/06/01 15:38:23 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,25 @@ int	count_number(char *line)
 	return (i);
 }
 
+void	valid_rgb(t_data *data, int *rgb, char *line, char *full)
+{
+	int	cn;
+	int	val;
+
+	cn = count_number(line);
+	if ((cn > 3 || cn <= 0))
+		clean_exit(data, ft_error("rgb", ERR_PARSER_BAD_NUMBER_RGB), full);
+	*rgb = *rgb << 8 | ft_atoi(line);
+	val = ft_atoi(line);
+	if (val < 0 || val > 255)
+		clean_exit(data, ft_error("rgb", ERR_PARSER_BAD_NUMBER_RGB), full);
+	*rgb = (*rgb << 8) | val;
+}
+
 /*PARSING RGB*/
 void	parse_rgb(t_data *data, int *rgb, char *line, char *full)
 {
 	int	i;
-	int	cn;
 
 	int (count_rgb) = 0;
 	i = 0;
@@ -42,11 +56,8 @@ void	parse_rgb(t_data *data, int *rgb, char *line, char *full)
 			while (line[i] != '\0' && ft_isspace(line[i]))
 				i++;
 		}
-		cn = count_number(&line[i]);
+		valid_rgb(data, rgb, &line[i], full);
 		count_rgb++;
-		if ((cn > 3 || cn <= 0))
-			clean_exit(data, ft_error("rgb", ERR_PARSER_BAD_NUMBER_RGB), full);
-		*rgb = *rgb << 8 | ft_atoi(&line[i]);
 		while (line[i] != '\0' && ft_isdigit(line[i]))
 			i++;
 	}
