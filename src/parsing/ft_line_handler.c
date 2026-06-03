@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/05/28 16:00:55 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/06/03 15:23:35 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@ void	skip_space(char *line, int *i)
 
 int	handle_textures(t_data *data, char *line, int *i)
 {
-	if (!ft_strncmp(&line[*i], "NO", 2) && !data->params.no_path)
+	if (!ft_strncmp(&line[*i], "NO", 2) && !data->params.no_path
+		&& !data->is_map)
 		data->params.no_path = ft_fill_data_info(data, &line[*i + 2], line);
-	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2) && !data->params.do_path)
+	else if (BONUS && !ft_strncmp(&line[*i], "DO", 2) && !data->params.do_path
+		&& !data->is_map)
 		data->params.do_path = ft_fill_data_info(data, &line[*i + 2], line);
-	else if (!ft_strncmp(&line[*i], "SO", 2) && !data->params.so_path)
+	else if (!ft_strncmp(&line[*i], "SO", 2) && !data->params.so_path
+		&& !data->is_map)
 		data->params.so_path = ft_fill_data_info(data, &line[*i + 2], line);
-	else if (!ft_strncmp(&line[*i], "WE", 2) && !data->params.we_path)
+	else if (!ft_strncmp(&line[*i], "WE", 2) && !data->params.we_path
+		&& !data->is_map)
 		data->params.we_path = ft_fill_data_info(data, &line[*i + 2], line);
-	else if (!ft_strncmp(&line[*i], "EA", 2) && !data->params.ea_path)
+	else if (!ft_strncmp(&line[*i], "EA", 2) && !data->params.ea_path
+		&& !data->is_map)
 		data->params.ea_path = ft_fill_data_info(data, &line[*i + 2], line);
 	else
 		return (0);

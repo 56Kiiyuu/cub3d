@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:44:13 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/01 15:38:23 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/06/03 15:25:50 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	valid_rgb(t_data *data, int *rgb, char *line, char *full)
 	cn = count_number(line);
 	if ((cn > 3 || cn <= 0))
 		clean_exit(data, ft_error("rgb", ERR_PARSER_BAD_NUMBER_RGB), full);
-	*rgb = *rgb << 8 | ft_atoi(line);
 	val = ft_atoi(line);
 	if (val < 0 || val > 255)
 		clean_exit(data, ft_error("rgb", ERR_PARSER_BAD_NUMBER_RGB), full);
