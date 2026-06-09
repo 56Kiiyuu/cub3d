@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/03 15:23:35 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/06/09 15:46:25 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	handle_textures(t_data *data, char *line, int *i)
 
 void	ft_line_handler(t_data *data, char *line, int *i)
 {
-	skip_space(line, i);
+	if (!data->is_map)
+		skip_space(line, i);
 	if (line[*i] == '\n' || line[*i] == '\0')
 	{
 		if (data->is_map)
@@ -58,7 +59,7 @@ void	ft_line_handler(t_data *data, char *line, int *i)
 	else if (!ft_strncmp(&line[*i], "C", 1) && !data->is_map)
 		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1], line);
 	else if (line[*i] == '1' || line[*i] == '0'
-		|| ft_strchr("NSEWDO", line[*i]))
+		|| ft_strchr("NSEWDO", line[*i]) || line[*i] == ' ')
 	{
 		if (data->map_end)
 			clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_KEYWORD), line);
