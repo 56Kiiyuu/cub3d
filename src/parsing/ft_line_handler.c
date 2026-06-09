@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_line_handler.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 18:07:36 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/09 15:46:25 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:37:21 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ void	ft_line_handler(t_data *data, char *line, int *i)
 		parse_rgb(data, &data->params.floor_color, &line[*i + 1], line);
 	else if (!ft_strncmp(&line[*i], "C", 1) && !data->is_map)
 		parse_rgb(data, &data->params.ceiling_color, &line[*i + 1], line);
-	else if (line[*i] == '1' || line[*i] == '0'
-		|| ft_strchr("NSEWDO", line[*i]) || line[*i] == ' ')
+	else if (line[*i] == '1' || line[*i] == '0' || line[*i] == ' '
+		|| ft_strchr("NSEW", line[*i])
+		|| (BONUS && ft_strchr("DO", line[*i])))
 	{
 		if (data->map_end)
 			clean_exit(data, ft_error("parse.c", ERR_PARSER_BAD_KEYWORD), line);

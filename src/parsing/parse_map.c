@@ -6,7 +6,7 @@
 /*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 15:16:04 by gabch             #+#    #+#             */
-/*   Updated: 2026/05/28 16:02:00 by kevlim           ###   ########.fr       */
+/*   Updated: 2026/06/09 16:36:34 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	process_map_line(t_data *data, char *line, int j, int *i)
 		data->is_map = 1;
 	if (data->is_map)
 	{
-		if (line[j] == '1' || line[j] == '0' || ft_strchr("NSEWDO", line[j]))
+		if (line[j] == '1' || line[j] == '0' || ft_strchr("NSEW", line[j])
+			|| (BONUS && ft_strchr("DO", line[j])))
 		{
 			if (data->map_end)
 				clean_exit(data, ft_error("parse_map.c",

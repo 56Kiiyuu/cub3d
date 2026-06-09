@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 13:22:23 by kevlim            #+#    #+#             */
-/*   Updated: 2026/05/27 19:10:03 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/06/09 16:48:36 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,10 @@ char	*ft_fill_data_info(t_data *data, char *line, char *full);
 void	parse_map(t_data *data, int size_map, const char *filename);
 void	parse_rgb(t_data *data, int *rgb, char *line, char *full);
 void	parse_spawn(t_data *data);
+int		check_left(t_data *data, int x, int y);
+int		check_right(t_data *data, int x, int y);
+int		check_up(t_data *data, int x, int y);
+int		check_down(t_data *data, int x, int y);
 void	check_map(t_data *data);
 void	ft_line_handler(t_data *data, char *line, int *i);
 void	normalize_map(t_data *data);

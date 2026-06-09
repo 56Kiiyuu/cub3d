@@ -22,6 +22,7 @@ SRC =	main.c \
 		parsing/parse_map.c \
 		parsing/parse_rgb.c \
 		parsing/parse_spawn.c \
+		parsing/check_map_utils.c \
 		parsing/check_map.c \
 		render/render.c \
 		render/raycasting.c \

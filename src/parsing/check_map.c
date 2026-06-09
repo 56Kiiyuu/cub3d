@@ -3,67 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kevlim <kevlim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/09 15:48:40 by gchalmel         ###   ########.fr       */
+/*   Created: 2026/06/09 16:46:18 by kevlim            #+#    #+#             */
+/*   Updated: 2026/06/09 16:58:41 by kevlim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
-#include "../../libft/libft.h"
-#include <stdio.h>
+#include "cub3d.h"
 
-int	check_left(t_data *data, int x, int y)
+void	check_case(t_data *data, int x, int y)
 {
-	while (x >= 0)
-	{
-		if (data->map[y][x] == '1')
-			return (1);
-		if (data->map[y][x] == ' ')
-			return (0);
-		x--;
-	}
-	return (0);
-}
-
-int	check_right(t_data *data, int x, int y)
-{
-	while (data->map[y][x] != '\0')
-	{
-		if (data->map[y][x] == '1')
-			return (1);
-		if (data->map[y][x] == ' ')
-			return (0);
-		x++;
-	}
-	return (0);
-}
-
-int	check_up(t_data *data, int x, int y)
-{
-	while (y >= 0)
-	{
-		if (data->map[y][x] == '1')
-			return (1);
-		if (data->map[y][x] == ' ')
-			return (0);
-		y--;
-	}
-	return (0);
-}
-
-int	check_down(t_data *data, int x, int y)
-{
-	while (y < data->map_size_y)
-	{
-		if (data->map[y][x] == '1')
-			return (1);
-		if (data->map[y][x] == ' ')
-			return (0);
-		y++;
-	}
-	return (0);
+	if (!check_left(data, x, y))
+		clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
+	else if (!check_right(data, x, y))
+		clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
+	else if (!check_up(data, x, y))
+		clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
+	else if (!check_down(data, x, y))
+		clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 }
 
 void	check_map(t_data *data)
@@ -72,27 +30,21 @@ void	check_map(t_data *data)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < data->map_size_y)
 	{
+		j = 0;
 		while (data->map[i][j] != '\0')
 		{
-			if (!ft_strchr("01 NSEWDO", data->map[i][j]))
+			if (!ft_strchr("01 NSEW", data->map[i][j])
+				&& !(BONUS && data->params.do_path
+				&& ft_strchr("DO", data->map[i][j])))
 				clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
-			if (data->map[i][j] == '0')
-			{
-				if (!check_left(data, j, i))
-					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
-				else if (!check_right(data, j, i))
-					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
-				else if (!check_up(data, j, i))
-					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
-				else if (!check_down(data, j, i))
-					clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
-			}
+			if (data->map[i][j] == '0'
+				|| (BONUS && data->params.do_path
+				&& ft_strchr("DO", data->map[i][j])))
+				check_case(data, j, i);
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 }
