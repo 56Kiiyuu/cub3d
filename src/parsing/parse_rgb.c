@@ -6,7 +6,7 @@
 /*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:44:13 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/03 15:25:50 by gchalmel         ###   ########.fr       */
+/*   Updated: 2026/06/09 15:37:45 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	parse_rgb(t_data *data, int *rgb, char *line, char *full)
 
 	int (count_rgb) = 0;
 	i = 0;
+	*rgb = 0;
 	while (line[i] != '\0' && line[i] != '\n')
 	{
 		while (line[i] != '\0' && ft_isspace(line[i]))
