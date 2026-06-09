@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabch <gabch@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gchalmel <gchalmel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/04 17:44:58 by gchalmel          #+#    #+#             */
-/*   Updated: 2026/06/01 00:30:28 by gabch            ###   ########.fr       */
+/*   Updated: 2026/06/09 15:48:40 by gchalmel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	check_map(t_data *data)
 	{
 		while (data->map[i][j] != '\0')
 		{
+			if (!ft_strchr("01 NSEWDO", data->map[i][j]))
+				clean_exit(data, ft_error("map", PARSING_WRONG_MAP), NULL);
 			if (data->map[i][j] == '0')
 			{
 				if (!check_left(data, j, i))
