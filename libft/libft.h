@@ -12,7 +12,7 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define SIZE_MAX (18446744073709551615UL)
+# define SIZE_MAX 18446744073709551615UL
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
